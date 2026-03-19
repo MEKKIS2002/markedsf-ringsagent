@@ -6,7 +6,7 @@
 <title>Novooi — Markedsagent</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA4MCA4MCI+PHJlY3Qgd2lkdGg9IjgwIiBoZWlnaHQ9IjgwIiBmaWxsPSIjMWExOTE2IiByeD0iOCIvPjx0ZXh0IHg9IjQwIiB5PSI0MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9ImNlbnRyYWwiIGZvbnQtZmFtaWx5PSJHZW9yZ2lhLHNlcmlmIiBmb250LXNpemU9IjI4IiBmb250LXdlaWdodD0iNDAwIiBmb250LXN0eWxlPSJpdGFsaWMiIGxldHRlci1zcGFjaW5nPSIyIiBmaWxsPSIjZjBlYWQ2Ij5NQTwvdGV4dD48L3N2Zz4=">
 <!-- LINJE UNDER: lim inn nøkkelen din UTEN de 4 siste tegnene -->
-<script>const KEY_PREFIX = "sk-ant-api03-LK3CveKntzJ7fuJ36NB3RUmqdBYiv8wgsR_0PMaNBK28vNZinK-BIabghLMhvyGjrtGOrXkJ19UCmfPh4-sBnw-enZD";</script>
+<script>const KEY_PREFIX = "sk-ant-api03-XXXXXXXXXXXXXXXXXXXXXXXX";</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
@@ -152,19 +152,32 @@ NOVOOI ER:
 - Slagord: "Designed in Norway – Made for Generations"
 
 NOVOOI SIN TONE OF VOICE:
-- Rolig, raffinert og selvsikker — aldri skrikende eller masete
+- Rolig, raffinert og selvsikker. Aldri skrikende eller masete
 - Respektfull overfor håndverk og designernes arbeid
-- Varm men profesjonell — som en kunnskapsrik venn som elsker god design
+- Varm men profesjonell, som en kunnskapsrik venn som elsker god design
 - Foretrekker ord som: håndverk, kvalitet, bærekraft, formgiver, kuratert, tidløst, norsk arv, interiør
 - UNNGÅR: overdrevne superlativ, mange utropstegn, trendy slang, "sjekk ut", "klikk her", "utrolig", "crazy"
 - Skriver alltid på norsk (bokmål), kortfattet og presist
-- Emneknagger: stemningsfulle og relevante, maks 10–12 per innlegg, gjerne norske
+- Emneknagger: stemningsfulle og relevante, maks 10 per innlegg, gjerne norske
+
+SKRIVESTIL OG ABSOLUTTE REGLER:
+- ALDRI bruk em-dash (--) eller tankestrek (--) i noen form. Bruk komma, punktum eller ny setning i stedet
+- ALDRI bruk fraser som avslører AI-opprinnelse: "Oppdag", "Utforsk", "Dykk inn i", "La deg inspirere av", "Ta steget", "En perfekt balanse mellom", "Vi er stolte av å presentere", "Det ultimate", "Tidløs eleganse møter", "Møt [navn]"
+- ALDRI bruk passive konstruksjoner som høres genererte ut: "er designet for å", "gir deg muligheten til", "redefinerer hva vi forventer av"
+- Skriv slik et menneske faktisk snakker og skriver. Kortere setninger. Litt ujevnt. Ikke for polert
+- Varier setningslengde. Bland korte og litt lengre. Unngå at alle setninger har samme rytme
+- Bruk konkrete detaljer fremfor vage adjektiver. "Eiketre, håndoljert" er bedre enn "vakre naturmaterialer"
+- Det er greit å starte en setning med "Og" eller "Men" for å bryte den typiske AI-rytmen
+- Ikke forklare for mye. La produktet tale for seg. Stopp før du blir masete
 
 GOD NOVOOI-TONE:
-"Møt Gudrun — håndlagde puter og metertekstil i naturfibre, med røtter i norsk tekstiltradisjon. ✦ Se kolleksjonen via lenke i bio. #norskdesign #håndverk #interiør"
+"Gudrun lager puter og metertekstil i lin og ull. Alt er håndlaget, mye produseres på bestilling. Se kolleksjonen via lenke i bio. #norskdesign #håndverk #interiør"
 
 DÅRLIG TONE (aldri):
-"🔥🔥 NY LEVERANDØR!! Sjekk ut disse UTROLIGE putene!! Klikk lenken NÅ!! 😍😍"`;
+"🔥🔥 NY LEVERANDØR!! Sjekk ut disse UTROLIGE putene!! Klikk lenken NÅ!! 😍😍"
+
+OGSÅ DÅRLIG (for AI-aktig):
+"Oppdag den perfekte balansen mellom funksjon og form. Et tidløst uttrykk som redefinerer hva vi forventer av kvalitetsdesign."`
 
 async function callClaude(key, msgs) {
   const r = await fetch("https://api.anthropic.com/v1/messages", {
