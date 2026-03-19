@@ -4,8 +4,9 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Novooi — Markedsagent</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA4MCA4MCI+CiAgPHJlY3Qgd2lkdGg9IjgwIiBoZWlnaHQ9IjgwIiBmaWxsPSIjMWExOTE2IiByeD0iOCIvPgogIDx0ZXh0IHg9IjQwIiB5PSI1NCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9Ikdlb3JnaWEsc2VyaWYiIGZvbnQtc2l6ZT0iMjgiIGZvbnQtd2VpZ2h0PSI0MDAiIGxldHRlci1zcGFjaW5nPSIyIiBmaWxsPSIjZjBlYWQ2Ij5NQTwvdGV4dD4KPC9zdmc+">
 <!-- LINJE UNDER: lim inn nøkkelen din UTEN de 4 siste tegnene -->
-<script>const KEY_PREFIX = "sk-ant-api03-LK3CveKntzJ7fuJ36NB3RUmqdBYiv8wgsR_0PMaNBK28vNZinK-BIabghLMhvyGjrtGOrXkJ19UCmfPh4-sBnw-enZD";</script>
+<script>const KEY_PREFIX = "sk-ant-api03-XXXXXXXXXXXXXXXXXXXXXXXX";</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
@@ -117,6 +118,22 @@ textarea:focus,input:focus{border-color:var(--ink)}
 
 /* DIVIDER */
 .divider{border:none;border-top:1px solid var(--line);margin:32px 0}
+
+/* IMAGE ANALYSIS TABLE */
+.img-table{width:100%;border-collapse:collapse;margin-top:32px}
+.img-table th{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--mid);font-weight:400;padding:10px 16px;border-bottom:1px solid var(--line);text-align:left;background:var(--white)}
+.img-table th:first-child{width:110px}
+.img-table td{padding:20px 16px;border-bottom:1px solid var(--line);vertical-align:top;font-size:13px;line-height:1.7;color:var(--ink);background:var(--white)}
+.img-table tr:last-child td{border-bottom:none}
+.img-table tr:hover td{background:#faf9f7}
+.img-table .thumb-cell{padding:16px}
+.img-table .thumb{width:80px;height:80px;object-fit:cover;display:block;border:1px solid var(--line)}
+.img-table .caption-variants{display:flex;flex-direction:column;gap:12px}
+.img-table .variant{background:var(--bg);padding:12px 14px;border-left:2px solid var(--line)}
+.img-table .variant-label{font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);margin-bottom:4px}
+.img-table .variant-text{font-size:12px;line-height:1.7;color:var(--ink)}
+.img-table .copy-cell{width:60px;text-align:right;padding-right:16px}
+.tbl-processing{background:var(--bg);padding:14px 16px;font-size:11px;color:var(--mid);letter-spacing:.5px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:8px}
 </style>
 </head>
 <body>
@@ -314,59 +331,164 @@ function InnholdTab({k, state, setState}){
 }
 
 /* ══════════════════════════════════════════
-   BILDEANALYSE
+   BILDEANALYSE — flere bilder, tabell
 ══════════════════════════════════════════ */
+function parseVariants(text){
+  // Extract VARIANT 1/2/3 blocks from Claude response
+  const variants = [];
+  const re = /VARIANT\s*\d+[:\s]+([\s\S]*?)(?=VARIANT\s*\d+|$)/gi;
+  let m;
+  while((m=re.exec(text))!==null){
+    const v = m[1].trim();
+    if(v) variants.push(v);
+  }
+  // fallback: split on double newline if no variants found
+  if(variants.length===0) return [text.trim()];
+  return variants.slice(0,3);
+}
+
 function ImageTab({k, state, setState}){
-  const {img, mime, plat, tone, res, load, err, over} = state;
+  const {imgs, plat, tone, results, over, globalLoad, err} = state;
   const set = (key,val) => setState(s=>({...s,[key]:val}));
   const ref = useRef();
 
-  const loadFile = f => {
-    if(!f) return;
-    set("mime",f.type||"image/jpeg");
-    const r=new FileReader();
-    r.onload=e=>set("img",e.target.result.split(",")[1]);
-    r.readAsDataURL(f);
-    set("res","");set("err","");
+  const loadFiles = files => {
+    Array.from(files).forEach(f=>{
+      if(!f.type.startsWith("image/")) return;
+      const reader=new FileReader();
+      reader.onload=e=>setState(s=>({
+        ...s,
+        imgs:[...s.imgs,{name:f.name,mime:f.type,data:e.target.result.split(",")[1],url:e.target.result,status:"pending",variants:[]}]
+      }));
+      reader.readAsDataURL(f);
+    });
+    set("err","");
+  };
+
+  const analyzeOne = async (img, index, key, plat, tone) => {
+    setState(s=>{
+      const imgs=[...s.imgs];
+      imgs[index]={...imgs[index],status:"loading"};
+      return {...s,imgs};
+    });
+    try{
+      const r=await callClaude(key,[{role:"user",content:[
+        {type:"image",source:{type:"base64",media_type:img.mime,data:img.data}},
+        {type:"text",text:`Analyser bildet og lag 3 ${plat}-captions for Novooi med tone: ${tone}.\nSkriv en KORT bildebeskrivelse (1 setning), deretter:\nVARIANT 1: [ferdig caption med emneknagger]\nVARIANT 2: [ferdig caption med emneknagger]\nVARIANT 3: [ferdig caption med emneknagger]\nHusk Novooi sin tone of voice.`}
+      ]}]);
+      // split description from variants
+      const descMatch = r.match(/^([^\n]+)\n/);
+      const desc = descMatch ? descMatch[1].trim() : "";
+      const variants = parseVariants(r);
+      setState(s=>{
+        const imgs=[...s.imgs];
+        imgs[index]={...imgs[index],status:"done",desc,variants};
+        return {...s,imgs};
+      });
+    } catch(e){
+      setState(s=>{
+        const imgs=[...s.imgs];
+        imgs[index]={...imgs[index],status:"error",error:e.message};
+        return {...s,imgs};
+      });
+    }
   };
 
   const go = async () => {
-    if(!img){set("err","Last opp et bilde.");return;}
-    set("err","");set("load",true);set("res","");
-    try{
-      const r=await callClaude(k,[{role:"user",content:[
-        {type:"image",source:{type:"base64",media_type:mime,data:img}},
-        {type:"text",text:`Analyser bildet og lag 3 ${plat}-captions for Novooi med tone: ${tone}.\nStart med en kort bildebeskrivelse, deretter VARIANT 1, VARIANT 2, VARIANT 3 med emneknagger.\nHusk Novooi sin tone of voice.`}
-      ]}]);
-      set("res",r);
-    }catch(e){set("err",e.message);}
-    set("load",false);
+    if(imgs.length===0){set("err","Last opp minst ett bilde.");return;}
+    set("err",""); set("globalLoad",true);
+    // Analyze sequentially to avoid rate limits
+    for(let i=0;i<imgs.length;i++){
+      if(imgs[i].status!=="done") await analyzeOne(imgs[i],i,k,plat,tone);
+    }
+    set("globalLoad",false);
   };
 
-  const previewSrc = img ? `data:${mime};base64,${img}` : null;
+  const allDone = imgs.length>0 && imgs.every(i=>i.status==="done"||i.status==="error");
+  const allCopy = imgs.filter(i=>i.variants&&i.variants.length).map(i=>
+    `${i.name}\n${i.desc||""}\n\n${i.variants.map((v,j)=>`Variant ${j+1}:\n${v}`).join("\n\n")}`
+  ).join("\n\n---\n\n");
 
   return <div>
     <p className="page-title">Bildeanalyse</p>
-    <p className="page-sub">Last opp et bilde — agenten skriver Novooi-captions basert på det den ser</p>
-    <div className={`drop${over?" over":""}`}
+    <p className="page-sub">Last opp flere bilder — agenten lager 3 caption-varianter per bilde i en oversiktlig tabell</p>
+
+    <div className={`drop${over?" over":""}`} style={{minHeight:100}}
       onDragOver={e=>{e.preventDefault();set("over",true);}}
       onDragLeave={()=>set("over",false)}
-      onDrop={e=>{e.preventDefault();set("over",false);loadFile(e.dataTransfer.files[0]);}}
+      onDrop={e=>{e.preventDefault();set("over",false);loadFiles(e.dataTransfer.files);}}
       onClick={()=>ref.current.click()}>
-      {previewSrc?<img className="preview" src={previewSrc} alt=""/>:<div className="drop-txt"><strong>Dra bilde hit</strong>eller klikk for å velge</div>}
-      <input ref={ref} type="file" accept="image/*" style={{display:"none"}} onChange={e=>loadFile(e.target.files[0])}/>
+      <div className="drop-txt"><strong>Dra bilder hit</strong>Velg ett eller flere bilder — hold ⌘ / Ctrl for flere</div>
+      <input ref={ref} type="file" accept="image/*" multiple style={{display:"none"}} onChange={e=>loadFiles(e.target.files)}/>
     </div>
-    <div className="row2">
-      <div><label>Plattform</label><div className="chips" style={{marginBottom:0}}>{PLAT.map(p=><button key={p} className={`chip${plat===p?" on":""}`} onClick={()=>set("plat",p)}>{p}</button>)}</div></div>
-      <div><label>Tone</label><div className="chips" style={{marginBottom:0}}>{TONES.map(t=><button key={t} className={`chip${tone===t?" on":""}`} onClick={()=>set("tone",t)}>{t}</button>)}</div></div>
-    </div>
-    <button className="btn" onClick={go} disabled={load||!img} style={{marginTop:8}}>{load?"Analyserer…":"Analyser og lag tekst"}</button>
+
+    {imgs.length>0 && <>
+      <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:16}}>
+        <div style={{display:"flex",gap:8,alignItems:"center"}}>
+          <div className="chips" style={{marginBottom:0}}>
+            {PLAT.map(p=><button key={p} className={`chip${plat===p?" on":""}`} onClick={()=>set("plat",p)}>{p}</button>)}
+          </div>
+          <div style={{width:1,height:24,background:"var(--line)",margin:"0 4px"}}/>
+          <div className="chips" style={{marginBottom:0}}>
+            {TONES.map(t=><button key={t} className={`chip${tone===t?" on":""}`} onClick={()=>set("tone",t)}>{t}</button>)}
+          </div>
+        </div>
+        <button className="btn-ghost" onClick={()=>setState(s=>({...s,imgs:[],globalLoad:false,err:""}))}>Fjern alle</button>
+      </div>
+
+      <div style={{display:"flex",gap:10,alignItems:"center",marginBottom:24}}>
+        <button className="btn" onClick={go} disabled={globalLoad}>{globalLoad?"Analyserer…":`Analyser ${imgs.length} bilde${imgs.length>1?"r":""}`}</button>
+        {allDone && <CopyBtn text={allCopy}/>}
+      </div>
+    </>}
+
     {err&&<p className="err">{err}</p>}
-    {load&&<div className="loading"><div className="dot"/><div className="dot"/><div className="dot"/>Analyserer bilde</div>}
-    {res&&<div className="result-box">
-      <div className="result-head"><span className="result-tag">Analyse og captions</span><CopyBtn text={res}/></div>
-      <div className="result-body">{res}</div>
-    </div>}
+
+    {imgs.length>0 && (imgs.some(i=>i.status!=="pending") || allDone) && (
+      <table className="img-table">
+        <thead>
+          <tr>
+            <th>Bilde</th>
+            <th>Beskrivelse</th>
+            <th>Caption-varianter</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {imgs.map((img,i)=>(
+            <tr key={i}>
+              <td className="thumb-cell">
+                <img className="thumb" src={img.url} alt={img.name}/>
+                <div style={{fontSize:9,color:"var(--mid)",marginTop:6,wordBreak:"break-all",letterSpacing:".3px"}}>{img.name}</div>
+              </td>
+              <td style={{minWidth:120,maxWidth:160}}>
+                {img.status==="loading" && <div className="loading" style={{padding:0}}><div className="dot"/><div className="dot"/><div className="dot"/></div>}
+                {img.status==="error" && <span style={{color:"#8a3a3a",fontSize:12}}>{img.error}</span>}
+                {img.status==="done" && <span style={{fontSize:12,color:"var(--mid)",lineHeight:1.6}}>{img.desc}</span>}
+                {img.status==="pending" && <span style={{fontSize:11,color:"var(--mid)",letterSpacing:".5px"}}>Venter…</span>}
+              </td>
+              <td>
+                {img.status==="done" && img.variants.length>0 && (
+                  <div className="caption-variants">
+                    {img.variants.map((v,j)=>(
+                      <div key={j} className="variant">
+                        <div className="variant-label">Variant {j+1}</div>
+                        <div className="variant-text">{v}</div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </td>
+              <td className="copy-cell">
+                {img.status==="done" && img.variants.length>0 &&
+                  <CopyBtn text={img.variants.join("\n\n---\n\n")}/>
+                }
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    )}
   </div>;
 }
 
@@ -521,7 +643,7 @@ function LockScreen({onUnlock}){
 const INIT = {
   innhold:  { mode:"single", topic:"", tone:"Profesjonell", plat:"Instagram", extra:"", res:"",
               focus:"", posts:"5", cal:null, raw:"", load:false, err:"", expandedDay:null },
-  image:    { img:null, mime:"image/jpeg", plat:"Instagram", tone:"Profesjonell", res:"", load:false, err:"", over:false },
+  image:    { imgs:[], plat:"Instagram", tone:"Profesjonell", over:false, globalLoad:false, err:"" },
   order:    { imgs:[], plat:"Instagram", goal:"", res:"", load:false, err:"", over:false, order:[] },
 };
 
