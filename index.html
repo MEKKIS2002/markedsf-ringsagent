@@ -4,6 +4,8 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Markedsagent</title>
+<!-- SETT INN DE FØRSTE DELENE AV API-NØKKELEN HER: -->
+<script>const KEY_PREFIX = "sk-ant-api03-sk-ant-api03-LK3CveKntzJ7fuJ36NB3RUmqdBYiv8wgsR_0PMaNBK28vNZinK-BIabghLMhvyGjrtGOrXkJ19UCmfPh4-sBnw-enZD";</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
@@ -14,6 +16,15 @@
 html,body,#root{height:100%;font-family:'Jost',sans-serif;background:#f8f6f3}
 :root{--bg:#f8f6f3;--white:#ffffff;--ink:#1a1916;--mid:#7a7670;--line:#dedad4;--gold:#8a7a5a}
 .app{min-height:100vh;background:var(--bg);color:var(--ink)}
+.lock{position:fixed;inset:0;background:var(--bg);display:flex;align-items:center;justify-content:center;z-index:9999}
+.lock-box{background:var(--white);border:1px solid var(--line);padding:56px 48px;text-align:center;max-width:360px;width:100%}
+.lock-logo{font-family:'Cormorant Garamond',serif;font-size:22px;letter-spacing:3px;text-transform:uppercase;color:var(--ink);margin-bottom:4px}
+.lock-logo em{font-style:normal;color:var(--gold)}
+.lock-sub{font-size:12px;color:var(--mid);letter-spacing:.5px;margin-bottom:36px}
+.lock-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--mid);margin-bottom:10px;display:block}
+.lock-input{width:100%;background:transparent;border:none;border-bottom:1px solid var(--line);color:var(--ink);padding:8px 0;font-family:'Cormorant Garamond',serif;font-size:28px;letter-spacing:8px;text-align:center;outline:none;transition:border .2s;margin-bottom:28px}
+.lock-input:focus{border-bottom-color:var(--ink)}
+.lock-err{font-size:11px;color:#8a3a3a;margin-top:-18px;margin-bottom:20px;letter-spacing:.3px}
 .header{background:var(--white);border-bottom:1px solid var(--line);padding:0 48px;display:flex;align-items:center;justify-content:space-between;height:64px;gap:24px;flex-wrap:wrap}
 @media(max-width:600px){.header{padding:0 20px}.main{padding:32px 20px!important}.nav{padding:0 20px!important}}
 .logo{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:400;letter-spacing:3px;text-transform:uppercase;color:var(--ink)}
@@ -363,17 +374,49 @@ function CalendarTab({ k }) {
   );
 }
 
+function LockScreen({ onUnlock }) {
+  const [suffix, setSuffix] = useState("");
+
+  const attempt = () => {
+    if (suffix.trim().length < 1) return;
+    onUnlock(KEY_PREFIX + suffix.trim());
+  };
+
+  return (
+    <div className="lock">
+      <div className="lock-box">
+        <div className="lock-logo">markeds<em>agent</em></div>
+        <div className="lock-sub">Norsk markedsføring, drevet av AI</div>
+        <span className="lock-label">Skriv inn tilgangskoden</span>
+        <input
+          className="lock-input"
+          type="password"
+          maxLength={4}
+          placeholder="····"
+          value={suffix}
+          onChange={e => setSuffix(e.target.value)}
+          onKeyDown={e => e.key === "Enter" && attempt()}
+          autoFocus
+        />
+        <button className="btn" style={{width:"100%"}} onClick={attempt}>Logg inn</button>
+      </div>
+    </div>
+  );
+}
+
 function App() {
   const [tab, setTab] = useState("caption");
   const [key, setKey] = useState("");
+
+  if (!key) return <LockScreen onUnlock={setKey} />;
 
   return (
     <div className="app">
       <div className="header">
         <div className="logo">markeds<em>agent</em></div>
-        <div className="api-row">
-          <input className="api-input" type="password" placeholder="Anthropic API-nøkkel" value={key} onChange={e => setKey(e.target.value)} />
-          {key && <span className="api-ok">Aktiv</span>}
+        <div className="api-row" style={{justifyContent:"flex-end"}}>
+          <span className="api-ok">● Innlogget</span>
+          <button className="btn-ghost" onClick={() => setKey("")} style={{marginLeft:12}}>Logg ut</button>
         </div>
       </div>
       <div className="nav">
