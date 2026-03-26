@@ -5,8 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Novooi — Markedsagent</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA4MCA4MCI+PHJlY3Qgd2lkdGg9IjgwIiBoZWlnaHQ9IjgwIiBmaWxsPSIjMWExOTE2IiByeD0iOCIvPjx0ZXh0IHg9IjQwIiB5PSI0MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9ImNlbnRyYWwiIGZvbnQtZmFtaWx5PSJHZW9yZ2lhLHNlcmlmIiBmb250LXNpemU9IjI4IiBmb250LXdlaWdodD0iNDAwIiBmb250LXN0eWxlPSJpdGFsaWMiIGxldHRlci1zcGFjaW5nPSIyIiBmaWxsPSIjZjBlYWQ2Ij5NQTwvdGV4dD48L3N2Zz4=">
-<!-- SETT INN NØKKEL HER (uten de 4 siste tegnene): -->
-<script>const KEY_PREFIX = "sk-ant-api03-LK3CveKntzJ7fuJ36NB3RUmqdBYiv8wgsR_0PMaNBK28vNZinK-BIabghLMhvyGjrtGOrXkJ19UCmfPh4-sBnw-enZD";</script>
+<script>const KEY_PREFIX = "sk-ant-api03-XXXXXXXXXXXXXXXXXXXXXXXX";</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
@@ -15,8 +14,6 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 html,body,#root{min-height:100%;font-family:'Jost',sans-serif}
-
-/* ── VARIABLES ── */
 :root{
   --bg:#f8f6f3;--white:#fff;--ink:#1a1916;--mid:#7a7670;
   --line:#dedad4;--gold:#8a7a5a;--surface:#f2efe9;
@@ -29,7 +26,7 @@ body.dark{
 }
 body{background:var(--bg);color:var(--ink);transition:background .2s,color .2s}
 
-/* ── LOCK ── */
+/* LOCK */
 .lock{position:fixed;inset:0;background:var(--bg);display:flex;align-items:center;justify-content:center;z-index:9999}
 .lock-box{background:var(--white);border:1px solid var(--line);padding:56px 48px;text-align:center;max-width:360px;width:90%}
 .lock-logo{font-family:'Cormorant Garamond',serif;font-size:22px;letter-spacing:3px;text-transform:uppercase;color:var(--ink);margin-bottom:4px}
@@ -39,170 +36,153 @@ body{background:var(--bg);color:var(--ink);transition:background .2s,color .2s}
 .lock-inp{width:100%;background:transparent;border:none;border-bottom:1px solid var(--line);color:var(--ink);padding:8px 0;font-family:'Cormorant Garamond',serif;font-size:28px;letter-spacing:8px;text-align:center;outline:none;transition:border .2s;margin-bottom:28px}
 .lock-inp:focus{border-bottom-color:var(--ink)}
 
-/* ── HEADER ── */
+/* HEADER */
 .header{background:var(--white);border-bottom:1px solid var(--line);padding:0 40px;display:flex;align-items:center;justify-content:space-between;height:60px;gap:12px;position:sticky;top:0;z-index:100}
 .logo{font-family:'Cormorant Garamond',serif;font-size:19px;letter-spacing:3px;text-transform:uppercase;color:var(--ink)}
 .logo em{font-style:normal;color:var(--gold)}
 .hdr-right{display:flex;align-items:center;gap:10px}
-.icon-btn{background:transparent;border:1px solid var(--line);color:var(--mid);width:32px;height:32px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:14px;transition:all .2s;flex-shrink:0}
+.icon-btn{background:transparent;border:1px solid var(--line);color:var(--mid);width:32px;height:32px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:14px;transition:all .2s}
 .icon-btn:hover{border-color:var(--ink);color:var(--ink)}
 .ctx-badge{font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--gold);white-space:nowrap}
 
-/* ── NAV ── */
-.nav{background:var(--white);border-bottom:1px solid var(--line);padding:0 40px;display:flex;overflow-x:auto;position:sticky;top:60px;z-index:99}
-.tab{padding:14px 20px 12px;font-family:'Jost',sans-serif;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;border:none;background:transparent;color:var(--mid);border-bottom:1px solid transparent;cursor:pointer;transition:all .2s;transform:translateY(1px);white-space:nowrap}
+/* NAV */
+.nav{background:var(--white);border-bottom:1px solid var(--line);padding:0 40px;display:flex;position:sticky;top:60px;z-index:99}
+.tab{padding:14px 22px 12px;font-family:'Jost',sans-serif;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;border:none;background:transparent;color:var(--mid);border-bottom:1px solid transparent;cursor:pointer;transition:all .2s;transform:translateY(1px)}
 .tab:hover{color:var(--ink)}.tab.active{color:var(--ink);border-bottom-color:var(--ink)}
-.tab-hint{font-size:9px;color:var(--mid);margin-left:4px;opacity:.6}
 
-/* ── CAMPAIGN BANNER ── */
+/* CAMPAIGN BANNER */
 .ctx-banner{background:var(--surface);border-bottom:1px solid var(--line);padding:8px 40px;display:flex;align-items:center;gap:10px;font-size:12px;color:var(--mid)}
 .ctx-banner strong{color:var(--ink);font-weight:500}
-.ctx-banner button{background:transparent;border:none;color:var(--mid);cursor:pointer;font-size:11px;letter-spacing:.5px;text-decoration:underline}
+.ctx-banner button{background:transparent;border:none;color:var(--mid);cursor:pointer;font-size:11px;text-decoration:underline}
 
-/* ── MAIN SPLIT LAYOUT ── */
-.page{display:flex;gap:0;min-height:calc(100vh - 120px)}
-.input-panel{width:420px;flex-shrink:0;padding:40px;border-right:1px solid var(--line)}
-.output-panel{flex:1;min-width:0;padding:40px;overflow-y:auto}
-@media(max-width:900px){.page{flex-direction:column}.input-panel{width:100%;border-right:none;border-bottom:1px solid var(--line);padding:24px 20px}.output-panel{padding:24px 20px}}
-@media(max-width:600px){.header,.nav{padding:0 16px}.ctx-banner{padding:8px 16px}}
+/* SPLIT LAYOUT */
+.page{display:flex;min-height:calc(100vh - 120px)}
+.input-panel{width:400px;flex-shrink:0;padding:36px 36px;border-right:1px solid var(--line);overflow-y:auto}
+.output-panel{flex:1;min-width:0;padding:36px 40px;overflow-y:auto}
+@media(max-width:860px){.page{flex-direction:column}.input-panel{width:100%;border-right:none;border-bottom:1px solid var(--line)}}
+@media(max-width:600px){.header,.nav{padding:0 16px}.ctx-banner{padding:8px 16px}.input-panel,.output-panel{padding:24px 16px}}
 
-.page-title{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:300;letter-spacing:.5px;margin-bottom:4px;line-height:1.2}
+.page-title{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:300;letter-spacing:.5px;margin-bottom:4px}
 .page-sub{font-size:12px;color:var(--mid);margin-bottom:28px}
 
-/* ── FORM ── */
+/* FORM */
 label{display:block;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--mid);margin-bottom:7px}
 textarea,input[type="text"],input[type="number"]{width:100%;background:var(--white);border:1px solid var(--line);color:var(--ink);padding:10px 12px;font-family:'Jost',sans-serif;font-size:13px;outline:none;transition:border .2s;resize:vertical;border-radius:0}
 textarea:focus,input:focus{border-color:var(--ink)}
 .field{margin-bottom:20px}
-.row2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px}
 
-/* ── CHIPS ── */
+/* CHIPS */
 .chips{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:20px}
 .chip{padding:5px 13px;border:1px solid var(--line);font-size:10px;letter-spacing:1px;text-transform:uppercase;cursor:pointer;transition:all .2s;color:var(--mid);background:transparent;font-family:'Jost',sans-serif}
 .chip:hover{border-color:var(--ink);color:var(--ink)}.chip.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
 
-/* ── BUTTONS ── */
+/* BUTTONS */
 .btn{background:var(--ink);color:var(--bg);border:none;padding:12px 28px;font-family:'Jost',sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:opacity .2s}
 .btn:hover{opacity:.75}.btn:disabled{opacity:.3;cursor:not-allowed}
-.btn-ghost{background:transparent;color:var(--mid);border:1px solid var(--line);padding:6px 14px;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;font-family:'Jost',sans-serif;transition:all .2s}
+.btn-ghost{background:transparent;color:var(--mid);border:1px solid var(--line);padding:6px 13px;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;font-family:'Jost',sans-serif;transition:all .2s}
 .btn-ghost:hover{border-color:var(--ink);color:var(--ink)}
-.btn-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
-.refine-btn{background:var(--surface);color:var(--mid);border:1px solid var(--line);padding:6px 12px;font-size:10px;letter-spacing:1px;text-transform:uppercase;cursor:pointer;font-family:'Jost',sans-serif;transition:all .2s}
+.refine-btn{background:var(--surface);color:var(--mid);border:1px solid var(--line);padding:6px 11px;font-size:9px;letter-spacing:1px;text-transform:uppercase;cursor:pointer;font-family:'Jost',sans-serif;transition:all .2s}
 .refine-btn:hover{background:var(--ink);color:var(--bg);border-color:var(--ink)}
 
-/* ── MODE TOGGLE ── */
-.mode-toggle{display:flex;gap:0;margin-bottom:24px;border:1px solid var(--line);width:100%}
+/* MODE TOGGLE */
+.mode-toggle{display:flex;border:1px solid var(--line);width:100%;margin-bottom:24px}
 .mode-btn{flex:1;padding:9px 0;font-family:'Jost',sans-serif;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;border:none;background:transparent;color:var(--mid);cursor:pointer;transition:all .2s;text-align:center}
 .mode-btn.on{background:var(--ink);color:var(--bg)}
-.mode-divider{width:1px;background:var(--line)}
 
-/* ── PLATFORM GUIDE ── */
-.plat-guide{background:var(--surface);border:1px solid var(--line);padding:12px 14px;margin-bottom:20px;font-size:11px;line-height:1.7;color:var(--mid)}
-.plat-guide strong{color:var(--ink);font-size:10px;letter-spacing:1px;text-transform:uppercase;display:block;margin-bottom:4px}
-.plat-guide .best-time{color:var(--gold);font-size:10px;margin-top:4px}
+/* SECTION DIVIDER inside input panel */
+.section-sep{border:none;border-top:1px solid var(--line);margin:24px 0}
 
-/* ── CHAR COUNTER ── */
-.char-row{display:flex;justify-content:space-between;align-items:center;margin-top:4px;margin-bottom:16px}
-.char-count{font-size:10px;letter-spacing:.5px}
-.char-count.good{color:var(--green)}
-.char-count.warn{color:var(--gold)}
-.char-count.over{color:var(--red)}
-.char-bar{height:2px;background:var(--line);border-radius:1px;margin-top:4px;overflow:hidden}
-.char-bar-fill{height:100%;transition:width .3s,background .3s;border-radius:1px}
+/* PLATFORM GUIDE */
+.plat-guide{background:var(--surface);border:1px solid var(--line);padding:11px 13px;margin-bottom:20px;font-size:11px;line-height:1.7;color:var(--mid)}
+.plat-guide strong{color:var(--ink);font-size:9px;letter-spacing:1px;text-transform:uppercase;display:block;margin-bottom:3px}
+.plat-guide .best-time{color:var(--gold);font-size:10px;margin-top:3px}
 
-/* ── RESULT ── */
+/* CHAR COUNTER */
+.char-row{display:flex;justify-content:space-between;margin-top:4px;margin-bottom:16px;font-size:10px}
+.char-good{color:var(--green)}.char-warn{color:var(--gold)}.char-over{color:var(--red)}
+.char-bar{height:2px;background:var(--line);margin-top:3px}
+.char-bar-fill{height:100%;transition:width .3s,background .3s}
+
+/* RESULT */
 .result-box{background:var(--white);border:1px solid var(--line);margin-bottom:12px}
-.result-head{padding:12px 16px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:8px}
-.result-tag{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);flex-shrink:0}
-.result-body{padding:20px;white-space:pre-wrap;line-height:1.8;font-size:13px;color:var(--ink)}
+.result-head{padding:11px 16px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:8px}
+.result-tag{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--gold)}
+.result-body{padding:20px;white-space:pre-wrap;line-height:1.85;font-size:13px;color:var(--ink)}
 .result-body.streaming::after{content:'▍';animation:blink .8s infinite;color:var(--gold)}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+.btn-row{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}
 
-/* ── AB ── */
+/* AB */
 .ab-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
 @media(max-width:700px){.ab-grid{grid-template-columns:1fr}}
 
-/* ── HISTORY ── */
-.history-section{margin-top:24px}
-.history-title{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--mid);margin-bottom:8px;display:flex;align-items:center;justify-content:space-between}
-.hist-item{border:1px solid var(--line);margin-bottom:6px;cursor:pointer;transition:border .2s}
+/* HISTORY */
+.history-section{margin-top:28px}
+.hist-title{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--mid);margin-bottom:8px;display:flex;justify-content:space-between}
+.hist-item{border:1px solid var(--line);margin-bottom:5px;cursor:pointer;transition:border .15s}
 .hist-item:hover{border-color:var(--mid)}
-.hist-head{padding:8px 12px;display:flex;align-items:center;justify-content:space-between;font-size:11px;color:var(--mid)}
-.hist-preview{font-size:11px;color:var(--mid);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:200px}
-.hist-meta{font-size:9px;letter-spacing:.5px;color:var(--gold)}
+.hist-head{padding:8px 12px;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.hist-preview{font-size:10px;color:var(--mid);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1}
+.hist-meta{font-size:9px;color:var(--gold);white-space:nowrap}
 .hist-body{padding:12px;font-size:12px;line-height:1.7;white-space:pre-wrap;color:var(--ink);border-top:1px solid var(--line)}
 
-/* ── LOADING / ERR ── */
+/* LOADING / ERR */
 .loading{display:flex;align-items:center;gap:10px;padding:16px 0;color:var(--mid);font-size:10px;letter-spacing:1.5px;text-transform:uppercase}
 .dot{width:5px;height:5px;background:var(--gold);border-radius:50%;animation:p 1.2s infinite}
 .dot:nth-child(2){animation-delay:.2s}.dot:nth-child(3){animation-delay:.4s}
 @keyframes p{0%,100%{opacity:.15;transform:scale(.8)}50%{opacity:1;transform:scale(1)}}
-.err{color:var(--red);font-size:11px;padding:10px 12px;border:1px solid;background:transparent;margin-top:10px}
+.err{color:var(--red);font-size:11px;padding:10px 12px;border:1px solid var(--red);margin-top:10px}
 
-/* ── TOAST ── */
+/* TOAST */
 .toast-wrap{position:fixed;bottom:28px;left:50%;transform:translateX(-50%);z-index:9000;pointer-events:none}
-.toast{background:var(--ink);color:var(--bg);padding:9px 20px;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;opacity:0;transform:translateY(12px);transition:all .25s;white-space:nowrap}
+.toast{background:var(--ink);color:var(--bg);padding:9px 20px;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;opacity:0;transform:translateY(12px);transition:all .25s}
 .toast.show{opacity:1;transform:translateY(0)}
 
-/* ── DROP ── */
-.drop{border:1px solid var(--line);padding:32px;text-align:center;cursor:pointer;transition:all .2s;background:var(--white);margin-bottom:20px}
+/* DROP */
+.drop{border:1px solid var(--line);padding:28px;text-align:center;cursor:pointer;transition:all .2s;background:var(--white);margin-bottom:16px}
 .drop:hover,.drop.over{border-color:var(--ink)}
-.drop-txt strong{display:block;font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:400;color:var(--ink);margin-bottom:4px}
+.drop-txt strong{display:block;font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:400;color:var(--ink);margin-bottom:3px}
 .drop-txt{color:var(--mid);font-size:11px}
-.preview{max-width:100%;max-height:240px;object-fit:contain}
 
-/* ── CALENDAR ── */
-.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;margin-top:20px}
+/* IMAGE GRID */
+.img-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(90px,1fr));gap:6px;margin:10px 0}
+.img-card{background:var(--white);border:1px solid var(--line);overflow:hidden;position:relative}
+.img-thumb{width:100%;aspect-ratio:1;object-fit:cover;display:block}
+.img-name{padding:5px 7px;font-size:9px;color:var(--mid);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.img-rm{position:absolute;top:3px;right:3px;width:16px;height:16px;background:var(--white);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:9px;cursor:pointer;opacity:0;transition:opacity .2s}
+.img-card:hover .img-rm{opacity:1}
+.num-badge{position:absolute;top:3px;left:3px;background:rgba(26,25,22,.65);color:#fff;padding:1px 5px;font-size:9px}
+.order-badge{position:absolute;top:3px;left:3px;background:var(--ink);color:var(--bg);width:18px;height:18px;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:500}
+
+/* CALENDAR */
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;margin-top:16px}
 @media(max-width:700px){.cal-grid{grid-template-columns:repeat(3,1fr)}}
 .cal-head{font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--mid);text-align:center;padding:6px 0;border-bottom:1px solid var(--line)}
-.cal-card{background:var(--white);border:1px solid var(--line);padding:12px 8px;min-height:140px;font-size:10px;line-height:1.6;transition:border .2s;cursor:pointer}
+.cal-card{background:var(--white);border:1px solid var(--line);padding:10px 8px;min-height:130px;font-size:10px;line-height:1.6;transition:border .2s;cursor:pointer}
 .cal-card:hover,.cal-card.exp{border-color:var(--ink)}
-.cal-date{font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--ink);margin-bottom:3px}
+.cal-date{font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--ink);margin-bottom:2px}
 .cal-type{font-size:8px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);margin-bottom:4px}
-.cal-time{font-size:9px;color:var(--gold);margin-top:4px}
-.cal-caption{margin-top:8px;font-size:10px;color:var(--ink);line-height:1.6;padding-top:8px;border-top:1px solid var(--line);white-space:pre-wrap}
-.cal-empty{background:var(--bg);border:1px solid var(--line);min-height:140px}
+.cal-time{font-size:9px;color:var(--gold);margin-top:3px}
+.cal-caption{margin-top:7px;font-size:10px;color:var(--ink);line-height:1.6;padding-top:7px;border-top:1px solid var(--line);white-space:pre-wrap}
+.cal-empty{background:var(--bg);border:1px solid var(--line);min-height:130px}
 
-/* ── IMAGE TABLE ── */
-.img-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:8px;margin:12px 0}
-.img-card{background:var(--white);border:1px solid var(--line);overflow:hidden;position:relative;transition:border .2s}
-.img-card:hover{border-color:var(--mid)}
-.img-thumb{width:100%;aspect-ratio:1;object-fit:cover;display:block}
-.img-name{padding:6px 8px;font-size:9px;color:var(--mid);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.img-rm{position:absolute;top:4px;right:4px;width:18px;height:18px;background:var(--white);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:9px;cursor:pointer;opacity:0;transition:opacity .2s}
-.img-card:hover .img-rm{opacity:1}
-.num-badge{position:absolute;top:4px;left:4px;background:rgba(26,25,22,.65);color:#fff;padding:2px 6px;font-size:9px}
-.order-badge{position:absolute;top:4px;left:4px;background:var(--ink);color:var(--bg);width:20px;height:20px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:500}
-.img-tbl{width:100%;border-collapse:collapse;margin-top:24px}
-.img-tbl th{font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--mid);font-weight:400;padding:8px 14px;border-bottom:1px solid var(--line);text-align:left;background:var(--white)}
-.img-tbl td{padding:16px 14px;border-bottom:1px solid var(--line);vertical-align:top;background:var(--white)}
-.img-tbl tr:last-child td{border-bottom:none}
-.img-tbl tr:hover td{background:var(--surface)}
-.tbl-thumb{width:72px;height:72px;object-fit:cover;border:1px solid var(--line)}
-.variant-block{background:var(--bg);padding:10px 12px;border-left:2px solid var(--line);margin-bottom:8px}
-.variant-block:last-child{margin-bottom:0}
-.variant-lbl{font-size:8px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);margin-bottom:4px}
-.variant-txt{font-size:11px;line-height:1.7;color:var(--ink)}
+/* SEASON LIST */
+.season-list{display:flex;flex-direction:column;gap:5px;margin-top:10px}
+.season-item{display:flex;gap:10px;align-items:flex-start;font-size:11px}
+.season-date{font-size:9px;color:var(--gold);width:52px;flex-shrink:0;padding-top:1px}
+.season-evt{color:var(--ink);line-height:1.5}
 
-/* ── SETTINGS PANEL ── */
-.settings-overlay{position:fixed;inset:0;background:rgba(26,25,22,.5);z-index:500;display:flex;justify-content:flex-end}
-.settings-panel{background:var(--white);width:360px;height:100%;overflow-y:auto;padding:32px 28px;border-left:1px solid var(--line)}
-.settings-title{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:300;margin-bottom:24px;display:flex;align-items:center;justify-content:space-between}
-.settings-section{margin-bottom:28px}
-.settings-section h3{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--mid);margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--line)}
+/* SETTINGS */
+.settings-overlay{position:fixed;inset:0;background:rgba(26,25,22,.45);z-index:500;display:flex;justify-content:flex-end}
+.settings-panel{background:var(--white);width:340px;height:100%;overflow-y:auto;padding:28px 24px;border-left:1px solid var(--line)}
+.settings-title{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:300;margin-bottom:20px;display:flex;align-items:center;justify-content:space-between}
+.settings-sec{margin-bottom:24px}
+.settings-sec h3{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--mid);margin-bottom:8px;padding-bottom:6px;border-bottom:1px solid var(--line)}
+.kbd{background:var(--surface);border:1px solid var(--line);padding:1px 6px;font-size:10px;border-radius:2px}
 
-/* ── ANALYSE TAB ── */
-.score-ring{display:inline-flex;align-items:center;justify-content:center;width:64px;height:64px;border-radius:50%;border:2px solid var(--gold);font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:300;color:var(--gold);margin-right:16px}
-.score-row{display:flex;align-items:center;margin-bottom:20px}
-
-/* ── SEASON CALENDAR ── */
-.season-list{display:flex;flex-direction:column;gap:6px}
-.season-item{display:flex;gap:12px;align-items:flex-start;font-size:11px}
-.season-date{font-size:10px;color:var(--gold);width:60px;flex-shrink:0;letter-spacing:.3px}
-.season-event{color:var(--ink);line-height:1.5}
-
+.empty-state{padding:60px 0;text-align:center;color:var(--mid);font-size:12px}
 .divider{border:none;border-top:1px solid var(--line);margin:24px 0}
-.kbd{background:var(--surface);border:1px solid var(--line);padding:1px 6px;font-size:10px;border-radius:2px;font-family:'Jost',sans-serif}
 </style>
 </head>
 <body>
@@ -210,7 +190,7 @@ textarea:focus,input:focus{border-color:var(--ink)}
 <script type="text/babel">
 const { useState, useRef, useEffect, useCallback } = React;
 
-/* ══ NOVOOI SYSTEM PROMPT ══ */
+/* ── NOVOOI SYSTEM PROMPT ── */
 const NOVOOI = `Du er Novooi sin dedikerte innholdsstrateg og markedsføringskopist.
 
 NOVOOI ER:
@@ -229,26 +209,26 @@ TONE OF VOICE:
 - UNNGÅR: overdrevne superlativ, mange utropstegn, trendy slang, "sjekk ut", "klikk her", "utrolig"
 - Emneknagger: maks 10 per innlegg, gjerne norske
 
-ABSOLUTTE SKRIVEEREGLER:
-- ALDRI em-dash (—) eller tankestrek i noen form. Bruk komma, punktum eller ny setning
-- ALDRI AI-fraser: "Oppdag", "Utforsk", "Dykk inn i", "La deg inspirere", "Ta steget", "En perfekt balanse mellom", "Vi er stolte av å presentere", "Det ultimate", "Møt [navn]"
+ABSOLUTTE SKRIVEREGLER:
+- ALDRI em-dash (—) eller tankestrek. Bruk komma, punktum eller ny setning
+- ALDRI AI-fraser: "Oppdag", "Utforsk", "Dykk inn i", "La deg inspirere", "En perfekt balanse mellom", "Vi er stolte av å presentere", "Det ultimate", "Møt [navn]"
 - ALDRI passive AI-konstruksjoner: "er designet for å", "gir deg muligheten til", "redefinerer hva vi forventer av"
 - Skriv slik et menneske faktisk skriver. Kortere setninger. Litt ujevnt. Ikke for polert
 - Varier setningslengde. Bruk konkrete detaljer fremfor vage adjektiver
-- Greit å starte setning med "Og" eller "Men" for å bryte AI-rytmen
-- Stopp før du blir masete. La produktet tale for seg
+- Greit å starte setning med "Og" eller "Men"
+- Stopp før du blir masete
 
 GOD NOVOOI-TONE:
 "Gudrun lager puter og metertekstil i lin og ull. Alt er håndlaget, mye produseres på bestilling. Se kolleksjonen via lenke i bio. #norskdesign #håndverk #interiør"
 
-DÅRLIG (AI-aktig):
+DÅRLIG (AI-aktig, aldri):
 "Oppdag den perfekte balansen mellom funksjon og form. Et tidløst uttrykk som redefinerer hva vi forventer av kvalitetsdesign."`;
 
-/* ══ PLATFORM DATA ══ */
+/* ── PLATFORM DATA ── */
 const PLAT_GUIDE = {
-  Instagram: { ideal:[138,150], max:2200, hashtags:"8-10 på slutten", format:"Kvadrat 1:1 eller 4:5", bestTime:"Tir/ons 09-11, fre 11-13", tip:"Første linje er avgjørende, resten kuttes av algoritmen" },
-  Facebook:  { ideal:[40,80],   max:500,  hashtags:"0-2", format:"1.91:1 eller 1:1", bestTime:"Tir-tor 09-13", tip:"Lengre storytelling (500-1000 tegn) fungerer godt her" },
-  LinkedIn:  { ideal:[150,300], max:1600, hashtags:"2-3 på slutten, aldri i teksten", format:"1.91:1", bestTime:"Tir/ons 07-09, tor 10-12", tip:"Profesjonell vinkling. Start med en sterk første setning" },
+  Instagram: { ideal:[138,150], max:2200, hashtags:"8-10 på slutten", format:"1:1 eller 4:5", bestTime:"Tir/ons 09-11, fre 11-13", tip:"Første linje avgjør alt — resten kuttes av algoritmen" },
+  Facebook:  { ideal:[40,80],   max:500,  hashtags:"0-2", format:"1.91:1 eller 1:1", bestTime:"Tir-tor 09-13", tip:"Storytelling på 500-1000 tegn fungerer godt her" },
+  LinkedIn:  { ideal:[150,300], max:1600, hashtags:"2-3 på slutten, aldri i teksten", format:"1.91:1", bestTime:"Tir/ons 07-09, tor 10-12", tip:"Profesjonell og direkte. Start med en sterk første setning" },
   TikTok:    { ideal:[100,150], max:300,  hashtags:"3-5", format:"9:16 video", bestTime:"Tir 09:00, tor 12:00, fre 09:00", tip:"Snakkende og direkte. Skriv som du snakker til én person" }
 };
 const PLAT_PROMPT = {
@@ -261,41 +241,35 @@ const TONES = ["Profesjonell","Uformell","Inspirerende","Eksklusivt"];
 const PLAT  = ["Instagram","Facebook","LinkedIn","TikTok"];
 const DAYS  = ["Man","Tir","Ons","Tor","Fre","Lør","Søn"];
 const SEASON_EVENTS = [
-  {d:"17. mai",e:"Grunnlovsdag — norsk stolthet og tradisjon"},
-  {d:"14. feb",e:"Valentinsdag — gaveguide og hjeminteriør"},
-  {d:"Mars",e:"Oslo Design Fair"},
-  {d:"April",e:"Påske — naturmaterialer, hyggelig hjemme"},
-  {d:"Mai-juni",e:"Vår/sommer lansering"},
-  {d:"Sep",e:"Maison et Objet Paris"},
-  {d:"Okt",e:"Design Week Oslo"},
-  {d:"Nov",e:"Black Friday / Juleforberedelser"},
-  {d:"Des",e:"Julegaver fra norske designere"},
+  {d:"14. feb", e:"Valentinsdag — gaveguide og hjeminteriør"},
+  {d:"17. mai", e:"Grunnlovsdag — norsk stolthet og tradisjon"},
+  {d:"Mars",    e:"Oslo Design Fair"},
+  {d:"April",   e:"Påske — naturmaterialer, hyggelig hjemme"},
+  {d:"Mai-jun", e:"Vår/sommer lansering"},
+  {d:"Sep",     e:"Maison et Objet Paris"},
+  {d:"Okt",     e:"Design Week Oslo"},
+  {d:"Nov",     e:"Black Friday / Juleforberedelser"},
+  {d:"Des",     e:"Julegaver fra norske designere"},
 ];
 
-/* ══ API ══ */
-async function streamClaude(key, msgs, onChunk, onDone, onError, extraSystem) {
+/* ── API ── */
+async function streamClaude(key, msgs, onChunk, onDone, onError, extraSys) {
+  const sys = extraSys ? NOVOOI+"\n\n"+extraSys : NOVOOI;
   let resp;
-  const sys = extraSystem ? NOVOOI + "\n\n" + extraSystem : NOVOOI;
   try {
-    resp = await fetch("https://api.anthropic.com/v1/messages", {
-      method:"POST",
-      headers:{"Content-Type":"application/json","x-api-key":key,"anthropic-version":"2023-06-01","anthropic-dangerous-direct-browser-access":"true"},
-      body:JSON.stringify({model:"claude-sonnet-4-20250514",max_tokens:2000,stream:true,system:sys,messages:msgs})
-    });
+    resp = await fetch("https://api.anthropic.com/v1/messages",{method:"POST",headers:{"Content-Type":"application/json","x-api-key":key,"anthropic-version":"2023-06-01","anthropic-dangerous-direct-browser-access":"true"},body:JSON.stringify({model:"claude-sonnet-4-20250514",max_tokens:2000,stream:true,system:sys,messages:msgs})});
   } catch(e){ onError(e.message); return; }
   if(!resp.ok){ try{ const d=await resp.json(); onError(d.error?.message||"API-feil"); }catch(e){ onError("API-feil "+resp.status); } return; }
   const reader=resp.body.getReader(), dec=new TextDecoder();
   let buf="";
-  try{
+  try {
     while(true){
-      const {done,value}=await reader.read();
-      if(done) break;
+      const {done,value}=await reader.read(); if(done) break;
       buf+=dec.decode(value,{stream:true});
       const lines=buf.split("\n"); buf=lines.pop()||"";
       for(const line of lines){
         if(!line.startsWith("data: ")) continue;
-        const raw=line.slice(6).trim();
-        if(!raw||raw==="[DONE]") continue;
+        const raw=line.slice(6).trim(); if(!raw||raw==="[DONE]") continue;
         try{
           const evt=JSON.parse(raw);
           if(evt.type==="content_block_delta"&&evt.delta?.type==="text_delta") onChunk(evt.delta.text);
@@ -303,7 +277,7 @@ async function streamClaude(key, msgs, onChunk, onDone, onError, extraSystem) {
         }catch(e){}
       }
     }
-  }catch(e){ onError(e.message); return; }
+  } catch(e){ onError(e.message); return; }
   onDone();
 }
 
@@ -318,43 +292,34 @@ async function validateKey(k){
   const d=await r.json(); if(d.error) throw new Error(d.error.message); return true;
 }
 
-/* ══ UTILS ══ */
+/* ── UTILS ── */
 function useToast(){
-  const [state,setState]=useState({msg:"",show:false});
-  const fire=useCallback(msg=>{ setState({msg,show:true}); setTimeout(()=>setState(s=>({...s,show:false})),2000); },[]);
-  return [state,fire];
+  const [s,setS]=useState({msg:"",show:false});
+  const fire=useCallback(msg=>{ setS({msg,show:true}); setTimeout(()=>setS(x=>({...x,show:false})),2000); },[]);
+  return [s,fire];
 }
+function saveHist(tab,item){ try{ const h=JSON.parse(localStorage.getItem("nv_h_"+tab)||"[]"); h.unshift(item); localStorage.setItem("nv_h_"+tab,JSON.stringify(h.slice(0,5))); }catch(e){} }
+function getHist(tab){ try{ return JSON.parse(localStorage.getItem("nv_h_"+tab)||"[]"); }catch(e){ return []; } }
 
-function saveHist(tab,item){
-  try{ const h=JSON.parse(localStorage.getItem("nv_hist_"+tab)||"[]"); h.unshift(item); localStorage.setItem("nv_hist_"+tab,JSON.stringify(h.slice(0,5))); }catch(e){}
-}
-function getHist(tab){ try{ return JSON.parse(localStorage.getItem("nv_hist_"+tab)||"[]"); }catch(e){ return []; } }
-
-function charInfo(text,plat){
-  const len=text.length, g=PLAT_GUIDE[plat]||PLAT_GUIDE.Instagram;
-  const pct=Math.min(len/g.max*100,100);
-  const cls=len<g.ideal[0]?"warn":len<=g.ideal[1]?"good":len<=g.max?"warn":"over";
-  return {len,max:g.max,ideal:g.ideal,pct,cls};
-}
-
-/* ══ SMALL COMPONENTS ══ */
-function Toast({msg,show}){
-  return <div className="toast-wrap"><div className={`toast${show?" show":""}`}>{msg}</div></div>;
-}
+/* ── SMALL COMPONENTS ── */
+function Toast({msg,show}){ return <div className="toast-wrap"><div className={`toast${show?" show":""}`}>{msg}</div></div>; }
 
 function CopyBtn({text,toast,label}){
-  return <button className="btn-ghost" onClick={()=>{navigator.clipboard.writeText(text);toast("Kopiert!")}}>{label||"Kopier"}</button>;
+  return <button className="btn-ghost" onClick={()=>{navigator.clipboard.writeText(text);toast("Kopiert!");}}>{label||"Kopier"}</button>;
 }
 
 function CharCounter({text,plat}){
   if(!text) return null;
-  const {len,max,ideal,pct,cls}=charInfo(text,plat);
+  const g=PLAT_GUIDE[plat]||PLAT_GUIDE.Instagram;
+  const len=text.length, pct=Math.min(len/g.max*100,100);
+  const cls=len<g.ideal[0]?"warn":len<=g.ideal[1]?"good":len<=g.max?"warn":"over";
+  const col=cls==="good"?"var(--green)":cls==="over"?"var(--red)":"var(--gold)";
   return <div>
     <div className="char-row">
-      <span className={`char-count ${cls}`}>{len} / {max} tegn</span>
-      <span style={{fontSize:10,color:"var(--mid)"}}>Ideelt: {ideal[0]}–{ideal[1]}</span>
+      <span className={`char-${cls}`}>{len} / {g.max} tegn</span>
+      <span style={{color:"var(--mid)"}}>Ideelt: {g.ideal[0]}–{g.ideal[1]}</span>
     </div>
-    <div className="char-bar"><div className="char-bar-fill" style={{width:pct+"%",background:cls==="good"?"var(--green)":cls==="over"?"var(--red)":"var(--gold)"}}/></div>
+    <div className="char-bar"><div className="char-bar-fill" style={{width:pct+"%",background:col}}/></div>
   </div>;
 }
 
@@ -362,84 +327,80 @@ function PlatformGuide({plat}){
   const g=PLAT_GUIDE[plat]; if(!g) return null;
   return <div className="plat-guide">
     <strong>{plat}</strong>
-    {g.tip}<br/>
-    Hashtags: {g.hashtags} · Format: {g.format}
+    {g.tip}<br/>Hashtags: {g.hashtags} · Format: {g.format}
     <div className="best-time">Beste tid: {g.bestTime}</div>
   </div>;
 }
 
-function HistoryPanel({tab,onRestore,toast}){
+function HistoryPanel({tab,toast}){
   const [items]=useState(()=>getHist(tab));
   const [open,setOpen]=useState(null);
   if(!items.length) return null;
   return <div className="history-section">
-    <div className="history-title">
-      <span>Historikk</span>
-      <span style={{fontSize:9,color:"var(--mid)"}}>{items.length} siste</span>
-    </div>
+    <div className="hist-title"><span>Historikk</span><span style={{color:"var(--mid)"}}>{items.length} siste</span></div>
     {items.map((it,i)=><div key={i} className="hist-item">
       <div className="hist-head" onClick={()=>setOpen(open===i?null:i)}>
-        <span className="hist-preview">{it.text?.slice(0,50)}…</span>
+        <span className="hist-preview">{it.text?.slice(0,55)}…</span>
         <span className="hist-meta">{it.plat} · {it.date}</span>
       </div>
-      {open===i && <div className="hist-body">
-        {it.text}
-        <div style={{marginTop:10,display:"flex",gap:8}}>
-          <button className="btn-ghost" onClick={()=>{onRestore(it.text);toast("Gjenopprettet!")}}>Gjenopprett</button>
-          <CopyBtn text={it.text} toast={toast}/>
-        </div>
-      </div>}
+      {open===i&&<div className="hist-body">{it.text}<div style={{marginTop:8}}><CopyBtn text={it.text} toast={toast}/></div></div>}
     </div>)}
   </div>;
 }
 
-/* ══ INNHOLD TAB ══ */
-function InnholdTab({k,state,setState,context,brandMemory,showToast}){
-  const {mode,topic,tone,plat,extra,res,resB,abMode,load,err,focus,posts,cal,raw,expandedDay}=state;
+/* ══════════════════════════════════════
+   INNHOLD + BILDERREKKEFØLGE (merged)
+══════════════════════════════════════ */
+function MainTab({k, state, setState, context, brandMemory, showToast}){
+  const {
+    mode, topic, tone, plat, extra, res, abMode, load, err,
+    focus, posts, cal, expandedDay,
+    imgs, orderPlat, orderGoal, orderRes, orderLoad, orderErr, orderOver, order
+  } = state;
   const set=(key,val)=>setState(s=>({...s,[key]:val}));
-  const streamRef=useRef(""), streamRefB=useRef("");
+  const streamRef=useRef(""); const orderStreamRef=useRef("");
+  const dropRef=useRef();
 
-  const buildExtra=()=>{
+  const buildCtx=()=>{
     let x="";
     if(brandMemory) x+=`\nMERKEVARE-NOTATER: ${brandMemory}`;
-    if(context) x+=`\nKAMPANJEKONTEKST DENNE UKEN: ${context}`;
+    if(context) x+=`\nKAMPANJEKONTEKST: ${context}`;
     return x;
   };
 
+  /* ── Caption ── */
   const genCaption=async()=>{
     if(!topic.trim()){set("err","Beskriv innlegget.");return;}
-    set("err","");set("load",true);set("res","");set("resB","");
-    streamRef.current=""; streamRefB.current="";
-    const platEx=PLAT_PROMPT[plat]||"";
-    const abInstr=abMode?"Lag TO klart forskjellige captions. Merk VARIANT A (produktfokusert) og VARIANT B (verdifokusert/storytelling).":"Lag 3 caption-varianter. Merk VARIANT 1, VARIANT 2, VARIANT 3.";
-    const prompt=`${abInstr}\n\nPlattform: ${plat}\n${platEx}\nTema: ${topic}\nTone: ${tone}\n${extra?`Tillegg: ${extra}`:""}\n${buildExtra()}\nIngen em-dash. Ikke AI-aktig. Skriv som et menneske.`;
+    set("err","");set("load",true);set("res","");
+    streamRef.current="";
+    const abInstr=abMode
+      ?"Lag TO klart forskjellige captions. Merk VARIANT A (produktfokusert) og VARIANT B (verdifokusert/storytelling)."
+      :"Lag 3 caption-varianter. Merk VARIANT 1, VARIANT 2, VARIANT 3.";
+    const prompt=`${abInstr}\n\nPlattform: ${plat}\n${PLAT_PROMPT[plat]||""}\nTema: ${topic}\nTone: ${tone}\n${extra?`Tillegg: ${extra}`:""}\n${buildCtx()}\nIngen em-dash. Ikke AI-aktig.`;
     await streamClaude(k,[{role:"user",content:prompt}],
-      chunk=>{streamRef.current+=chunk; set("res",streamRef.current);},
-      ()=>{set("load",false); saveHist("caption",{text:streamRef.current,plat,tone,topic,date:new Date().toLocaleDateString("no")});},
+      c=>{streamRef.current+=c;set("res",streamRef.current);},
+      ()=>{ set("load",false); saveHist("caption",{text:streamRef.current,plat,tone,topic,date:new Date().toLocaleDateString("no")}); },
       e=>{set("err",e);set("load",false);}
     );
   };
 
-  const refine=async(instruction)=>{
-    if(!res) return;
-    set("load",true); set("res","");
-    streamRef.current="";
-    const prompt=`Ta denne teksten og ${instruction}. Behold Novooi sin tone. Ingen em-dash:\n\n${res}`;
-    await streamClaude(k,[{role:"user",content:prompt}],
-      chunk=>{streamRef.current+=chunk;set("res",streamRef.current);},
+  const refine=async instr=>{
+    if(!res) return; set("load",true);set("res",""); streamRef.current="";
+    await streamClaude(k,[{role:"user",content:`Ta denne teksten og ${instr}. Behold Novooi sin tone. Ingen em-dash:\n\n${res}`}],
+      c=>{streamRef.current+=c;set("res",streamRef.current);},
       ()=>set("load",false),
       e=>{set("err",e);set("load",false);}
     );
   };
 
+  /* ── Calendar ── */
   const genCalendar=async()=>{
-    set("err","");set("load",true);set("cal",null);set("raw","");
+    set("err","");set("load",true);set("cal",null);
     try{
       const r=await callClaudeJSON(k,[{role:"user",content:
-        `Lag ukentlig innleggskalender for Novooi på ${plat}.\n${focus?`Ukens tema: ${focus}\n`:""}Antall innlegg: ${posts}.\n${buildExtra()}\nFor hvert innlegg: lag en FERDIG caption (ikke bare idé) i Novooi sin tone. Ingen em-dash.\n\nReturner KUN JSON:\n{"innlegg":[{"dag":"Man","dato":1,"type":"Post","tema":"...","caption":"Ferdig caption med emneknagger...","tidspunkt":"09:00"}]}`
+        `Lag ukentlig innleggskalender for Novooi på ${plat}.\n${focus?`Ukens tema: ${focus}\n`:""}Antall innlegg: ${posts}.\n${buildCtx()}\nLag FERDIG caption per innlegg i Novooi sin tone. Ingen em-dash.\n\nReturner KUN JSON:\n{"innlegg":[{"dag":"Man","dato":1,"type":"Post","tema":"...","caption":"Ferdig caption med emneknagger...","tidspunkt":"09:00"}]}`
       }]);
-      set("raw",r);
-      const clean=r.replace(/\`\`\`json|\`\`\`/g,"").trim();
+      const clean=r.replace(/```json|```/g,"").trim();
       set("cal",JSON.parse(clean).innlegg||[]);
     }catch(e){set("err","Parse-feil: "+e.message);}
     set("load",false);
@@ -447,242 +408,8 @@ function InnholdTab({k,state,setState,context,brandMemory,showToast}){
 
   const byDay=cal?DAYS.reduce((a,d)=>{a[d]=cal.find(p=>p.dag===d);return a},{}):{};
 
-  return <div className="page">
-    {/* INPUT PANEL */}
-    <div className="input-panel">
-      <p className="page-title">Innhold</p>
-      <p className="page-sub">Enkelt innlegg eller ukeplan · <span className="kbd">⌘↵</span> for å generere</p>
-
-      <div className="mode-toggle">
-        <button className={`mode-btn${mode==="single"?" on":""}`} onClick={()=>set("mode","single")}>Enkelt innlegg</button>
-        <div className="mode-divider"/>
-        <button className={`mode-btn${mode==="week"?" on":""}`} onClick={()=>set("mode","week")}>Ukeplan</button>
-      </div>
-
-      {mode==="single" && <>
-        <label>Plattform</label>
-        <div className="chips">{PLAT.map(p=><button key={p} className={`chip${plat===p?" on":""}`} onClick={()=>set("plat",p)}>{p}</button>)}</div>
-        <PlatformGuide plat={plat}/>
-        <div className="field"><label>Beskriv innlegget</label>
-          <textarea id="main-topic" rows={3} placeholder="F.eks: Vi lanserer Gudrun, som lager puter og metertekstil i lin og ull..." value={topic} onChange={e=>set("topic",e.target.value)}/>
-          <CharCounter text={topic} plat={plat}/>
-        </div>
-        <label>Tone</label>
-        <div className="chips">{TONES.map(t=><button key={t} className={`chip${tone===t?" on":""}`} onClick={()=>set("tone",t)}>{t}</button>)}</div>
-        <div className="field"><label>Tilleggsinfo (valgfritt)</label>
-          <textarea rows={2} placeholder="CTA, lenke i bio, kampanjekode, relevant kontekst..." value={extra} onChange={e=>set("extra",e.target.value)}/>
-        </div>
-        <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:16}}>
-          <button className={`chip${abMode?" on":""}`} style={{fontSize:10}} onClick={()=>set("abMode",!abMode)}>A/B test</button>
-          <span style={{fontSize:10,color:"var(--mid)"}}>To ulike vinklinger side om side</span>
-        </div>
-        <button id="main-gen-btn" className="btn" onClick={genCaption} disabled={load} style={{width:"100%"}}>{load?"Genererer…":"Generer captions"}</button>
-        {err&&<p className="err">{err}</p>}
-      </>}
-
-      {mode==="week" && <>
-        <div className="field"><label>Ukens tema / leverandør (valgfritt)</label>
-          <textarea rows={3} placeholder="F.eks: Ny leverandør Gudrun, Håndverksbiennalen, vårkollesjonen fra Northern..." value={focus} onChange={e=>set("focus",e.target.value)}/>
-        </div>
-        <label>Plattform</label>
-        <div className="chips">{PLAT.map(p=><button key={p} className={`chip${plat===p?" on":""}`} onClick={()=>set("plat",p)}>{p}</button>)}</div>
-        <div className="field"><label>Antall innlegg denne uken</label>
-          <input type="number" min="1" max="7" value={posts} onChange={e=>set("posts",e.target.value)}/>
-        </div>
-        <button id="main-gen-btn" className="btn" onClick={genCalendar} disabled={load} style={{width:"100%"}}>{load?"Planlegger…":"Lag ukeplan med captions"}</button>
-        {err&&<p className="err">{err}</p>}
-
-        <hr className="divider"/>
-        <div className="history-title" style={{marginBottom:10}}><span>Kommende hendelser</span></div>
-        <div className="season-list">
-          {SEASON_EVENTS.map((it,i)=><div key={i} className="season-item">
-            <span className="season-date">{it.d}</span>
-            <span className="season-event">{it.e}</span>
-          </div>)}
-        </div>
-      </>}
-    </div>
-
-    {/* OUTPUT PANEL */}
-    <div className="output-panel">
-      {load && mode==="single" && <div className="loading"><div className="dot"/><div className="dot"/><div className="dot"/>Skriver captions</div>}
-
-      {mode==="single" && res && <>
-        {abMode ? (
-          <div className="ab-grid">
-            {["A","B"].map(v=>{
-              const idx=res.indexOf("VARIANT "+v); const next=v==="A"?res.indexOf("VARIANT B"):-1;
-              const text=idx>=0?(next>0?res.slice(idx,next):res.slice(idx)).replace("VARIANT "+v+":","").trim():res;
-              return <div key={v} className="result-box">
-                <div className="result-head"><span className="result-tag">Variant {v}</span><CopyBtn text={text} toast={showToast}/></div>
-                <div className="result-body">{text}</div>
-              </div>;
-            })}
-          </div>
-        ) : (
-          <div className="result-box">
-            <div className="result-head"><span className="result-tag">Caption-varianter</span><CopyBtn text={res} toast={showToast}/></div>
-            <div className={`result-body${load?" streaming":""}`}>{res}</div>
-          </div>
-        )}
-        <CharCounter text={res} plat={plat}/>
-        {!load && <div className="btn-row">
-          <button className="refine-btn" onClick={()=>refine("gjør den kortere og mer konsis")}>Kortere</button>
-          <button className="refine-btn" onClick={()=>refine("gjør den mer formell og raffinert")}>Mer formell</button>
-          <button className="refine-btn" onClick={()=>refine("gjør den litt mer uformell og personlig")}>Mer uformell</button>
-          <button className="refine-btn" onClick={()=>refine("bytt ut hashtagsene med mer relevante og oppdaterte")}>Bytt hashtags</button>
-          <button className="refine-btn" onClick={()=>refine("skriv den helt om med en ny vinkling")}>Ny vinkling</button>
-        </div>}
-        <HistoryPanel tab="caption" onRestore={t=>set("res",t)} showToast={showToast} toast={showToast}/>
-      </>}
-
-      {mode==="week" && <>
-        {load && <div className="loading"><div className="dot"/><div className="dot"/><div className="dot"/>Lager ukeplan</div>}
-        {cal && <>
-          <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:12}}>
-            <span style={{fontSize:10,color:"var(--mid)",letterSpacing:"1px",textTransform:"uppercase"}}>Klikk dag for ferdig caption</span>
-            <CopyBtn toast={showToast} text={cal.filter(p=>p.caption).map(p=>`${p.dag} — ${p.tema}\n${p.caption}`).join("\n\n---\n\n")} label="Kopier alle"/>
-          </div>
-          <div className="cal-grid">
-            {DAYS.map(d=><div key={d} className="cal-head">{d}</div>)}
-            {DAYS.map(d=>{const p=byDay[d]; return p
-              ?<div key={d} className={`cal-card${expandedDay===d?" exp":""}`} onClick={()=>set("expandedDay",expandedDay===d?null:d)}>
-                <div className="cal-date">{p.dato||""}</div>
-                <div className="cal-type">{p.type}</div>
-                <div style={{fontWeight:500,color:"var(--ink)",fontSize:10,marginBottom:3}}>{p.tema}</div>
-                {p.tidspunkt&&<div className="cal-time">{p.tidspunkt}</div>}
-                {expandedDay===d&&p.caption&&<div className="cal-caption">{p.caption}<div style={{marginTop:8}}><CopyBtn text={p.caption} toast={showToast}/></div></div>}
-                {expandedDay!==d&&<div style={{fontSize:8,color:"var(--gold)",marginTop:6,letterSpacing:"1px",textTransform:"uppercase"}}>Trykk for caption</div>}
-              </div>
-              :<div key={d} className="cal-empty"/>;
-            })}
-          </div>
-          <hr className="divider"/>
-          <div style={{marginBottom:12}}><span style={{fontSize:10,color:"var(--mid)",letterSpacing:"1.5px",textTransform:"uppercase"}}>Alle captions</span></div>
-          {cal.filter(p=>p.caption).map((p,i)=><div key={i} className="result-box" style={{marginBottom:12}}>
-            <div className="result-head"><span className="result-tag">{p.dag} — {p.tema}</span><CopyBtn text={p.caption} toast={showToast}/></div>
-            <div className="result-body">{p.caption}</div>
-          </div>)}
-        </>}
-      </>}
-
-      {mode==="single"&&!res&&!load&&<div style={{padding:"40px 0",textAlign:"center",color:"var(--mid)",fontSize:12}}>Fyll inn innlegg og trykk generer</div>}
-    </div>
-  </div>;
-}
-
-/* ══ BILDEANALYSE TAB ══ */
-function parseVariants(text){
-  const variants=[]; const re=/VARIANT\s*\d+[:\s]+([\s\S]*?)(?=VARIANT\s*\d+|$)/gi; let m;
-  while((m=re.exec(text))!==null){ const v=m[1].trim(); if(v) variants.push(v); }
-  return variants.length>0?variants.slice(0,3):[text.trim()];
-}
-
-function ImageTab({k,state,setState,showToast}){
-  const {imgs,plat,tone,load,err,over}=state;
-  const set=(key,val)=>setState(s=>({...s,[key]:val}));
-  const ref=useRef();
-
-  const loadFiles=files=>{
-    Array.from(files).forEach(f=>{
-      if(!f.type.startsWith("image/")) return;
-      const r=new FileReader();
-      r.onload=e=>setState(s=>({...s,imgs:[...s.imgs,{name:f.name,mime:f.type,data:e.target.result.split(",")[1],url:e.target.result,status:"pending",variants:[],desc:""}]}));
-      r.readAsDataURL(f);
-    });
-    set("err","");
-  };
-
-  const analyzeOne=async(img,index)=>{
-    setState(s=>{const a=[...s.imgs];a[index]={...a[index],status:"loading"};return {...s,imgs:a};});
-    try{
-      const r=await fetch("https://api.anthropic.com/v1/messages",{method:"POST",headers:{"Content-Type":"application/json","x-api-key":k,"anthropic-version":"2023-06-01","anthropic-dangerous-direct-browser-access":"true"},body:JSON.stringify({model:"claude-sonnet-4-20250514",max_tokens:1500,system:NOVOOI,messages:[{role:"user",content:[{type:"image",source:{type:"base64",media_type:img.mime,data:img.data}},{type:"text",text:`Analyser bildet og lag 3 ${plat}-captions for Novooi med tone: ${tone}.\nSkriv KORT bildebeskrivelse (1 setning), deretter:\nVARIANT 1: [caption med emneknagger]\nVARIANT 2: [caption med emneknagger]\nVARIANT 3: [caption med emneknagger]\nIngen em-dash, ikke AI-aktig.`}]}]})});
-      const d=await r.json(); if(d.error) throw new Error(d.error.message);
-      const text=d.content.map(b=>b.text||"").join("");
-      const descMatch=text.match(/^([^\n]+)\n/); const desc=descMatch?descMatch[1].trim():"";
-      const variants=parseVariants(text);
-      setState(s=>{const a=[...s.imgs];a[index]={...a[index],status:"done",desc,variants};return {...s,imgs:a};});
-    }catch(e){
-      setState(s=>{const a=[...s.imgs];a[index]={...a[index],status:"error",error:e.message};return {...s,imgs:a};});
-    }
-  };
-
-  const go=async()=>{
-    if(!imgs.length){set("err","Last opp minst ett bilde.");return;}
-    set("err",""); set("load",true);
-    for(let i=0;i<imgs.length;i++) await analyzeOne(imgs[i],i);
-    set("load",false);
-  };
-
-  const allDone=imgs.length>0&&imgs.every(i=>i.status==="done"||i.status==="error");
-
-  return <div className="page">
-    <div className="input-panel">
-      <p className="page-title">Bildeanalyse</p>
-      <p className="page-sub">Last opp bilder — agenten lager 3 captions per bilde</p>
-      <div className={`drop${over?" over":""}`} style={{minHeight:90}}
-        onDragOver={e=>{e.preventDefault();set("over",true);}}
-        onDragLeave={()=>set("over",false)}
-        onDrop={e=>{e.preventDefault();set("over",false);loadFiles(e.dataTransfer.files);}}
-        onClick={()=>ref.current.click()}>
-        <div className="drop-txt"><strong>Dra bilder hit</strong>Hold ⌘ / Ctrl for å velge flere</div>
-        <input ref={ref} type="file" accept="image/*" multiple style={{display:"none"}} onChange={e=>loadFiles(e.target.files)}/>
-      </div>
-      {imgs.length>0&&<>
-        <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:12}}>
-          <label style={{margin:0}}>{imgs.length} bilde{imgs.length>1?"r":""}</label>
-          <button className="btn-ghost" onClick={()=>setState(s=>({...s,imgs:[],err:""}))}>Fjern alle</button>
-        </div>
-        <div className="img-grid">
-          {imgs.map((img,i)=><div key={i} className="img-card">
-            <img className="img-thumb" src={img.url} alt={img.name}/>
-            <div className="img-name">{img.name}</div>
-            <div className="img-rm" onClick={()=>setState(s=>({...s,imgs:s.imgs.filter((_,idx)=>idx!==i)}))}>✕</div>
-            <div className="num-badge">{i+1}</div>
-          </div>)}
-        </div>
-      </>}
-      <label>Plattform</label>
-      <div className="chips">{PLAT.map(p=><button key={p} className={`chip${plat===p?" on":""}`} onClick={()=>set("plat",p)}>{p}</button>)}</div>
-      <label>Tone</label>
-      <div className="chips">{TONES.map(t=><button key={t} className={`chip${tone===t?" on":""}`} onClick={()=>set("tone",t)}>{t}</button>)}</div>
-      <button id="main-gen-btn" className="btn" onClick={go} disabled={load||!imgs.length} style={{width:"100%",marginTop:8}}>
-        {load?`Analyserer…`:`Analyser ${imgs.length||""} bilde${imgs.length!==1?"r":""}`}
-      </button>
-      {err&&<p className="err">{err}</p>}
-    </div>
-    <div className="output-panel">
-      {imgs.some(i=>i.status!=="pending")&&<table className="img-tbl">
-        <thead><tr>
-          <th>Bilde</th><th>Beskrivelse</th><th>Caption-varianter</th><th></th>
-        </tr></thead>
-        <tbody>{imgs.map((img,i)=><tr key={i}>
-          <td style={{width:100}}><img className="tbl-thumb" src={img.url} alt={img.name}/><div style={{fontSize:9,color:"var(--mid)",marginTop:5,wordBreak:"break-all"}}>{img.name}</div></td>
-          <td style={{minWidth:120,maxWidth:160,fontSize:11,color:"var(--mid)",lineHeight:1.6}}>
-            {img.status==="loading"&&<div className="loading" style={{padding:0}}><div className="dot"/><div className="dot"/><div className="dot"/></div>}
-            {img.status==="error"&&<span style={{color:"var(--red)",fontSize:11}}>{img.error}</span>}
-            {img.status==="done"&&img.desc}
-            {img.status==="pending"&&<span style={{color:"var(--mid)",fontSize:10}}>Venter…</span>}
-          </td>
-          <td>{img.status==="done"&&<div>{img.variants.map((v,j)=><div key={j} className="variant-block"><div className="variant-lbl">Variant {j+1}</div><div className="variant-txt">{v}</div></div>)}</div>}</td>
-          <td style={{width:70,textAlign:"right"}}>{img.status==="done"&&<CopyBtn text={img.variants.join("\n\n---\n\n")} toast={showToast}/>}</td>
-        </tr>)}</tbody>
-      </table>}
-      {allDone&&imgs.length>1&&<div style={{marginTop:12,textAlign:"right"}}>
-        <CopyBtn text={imgs.filter(i=>i.variants?.length).map(i=>`${i.name}\n${i.desc}\n\n${i.variants.map((v,j)=>`Variant ${j+1}:\n${v}`).join("\n\n")}`).join("\n\n---\n\n")} toast={showToast} label="Kopier alle"/>
-      </div>}
-      {!imgs.length&&<div style={{padding:"40px 0",textAlign:"center",color:"var(--mid)",fontSize:12}}>Last opp bilder for å starte</div>}
-    </div>
-  </div>;
-}
-
-/* ══ BILDERREKKEFØLGE TAB ══ */
-function OrderTab({k,state,setState,showToast}){
-  const {imgs,plat,goal,res,load,err,over,order}=state;
-  const set=(key,val)=>setState(s=>({...s,[key]:val}));
-  const ref=useRef();
-
-  const loadFiles=files=>{
+  /* ── Order images ── */
+  const loadImgs=files=>{
     Array.from(files).forEach(f=>{
       if(!f.type.startsWith("image/")) return;
       const r=new FileReader();
@@ -694,190 +421,269 @@ function OrderTab({k,state,setState,showToast}){
   const moveImg=(from,to)=>{
     setState(s=>{
       const a=[...s.imgs]; const [item]=a.splice(from,1); a.splice(to,0,item);
-      return {...s,imgs:a,res:"",order:[]};
+      return {...s,imgs:a,orderRes:"",order:[]};
     });
   };
 
-  const go=async()=>{
-    if(imgs.length<2){set("err","Last opp minst 2 bilder.");return;}
-    set("err","");set("load",true);set("res","");set("order",[]);
-    const streamRef=React.createRef(); streamRef.current="";
+  const analyzeOrder=async()=>{
+    if(imgs.length<2){set("orderErr","Last opp minst 2 bilder.");return;}
+    set("orderErr","");set("orderLoad",true);set("orderRes","");set("order",[]);
+    orderStreamRef.current="";
     const content=[];
     imgs.forEach((img,i)=>{
       content.push({type:"text",text:`BILDE ${i+1}: "${img.name}"`});
       content.push({type:"image",source:{type:"base64",media_type:img.mime,data:img.data}});
     });
-    content.push({type:"text",text:`${imgs.length} bilder fra Novooi sin bildebank.\nPlattform: ${plat}${goal?`\nKampanjemål: ${goal}`:""}\n\n1. Kort beskrivelse av hvert bilde\n2. Anbefalt publiseringsrekkefølge. Skriv NØYAKTIG: "Anbefalt rekkefølge: X, X, X"\n3. Begrunnelse (visuell flyt, storytelling, Novooi-estetikk)\n4. Caption-ide per bilde\n\nSkriv på norsk. Ingen em-dash.`});
+    content.push({type:"text",text:`${imgs.length} bilder fra Novooi.\nPlattform: ${orderPlat}${orderGoal?`\nMål: ${orderGoal}`:""}\n\n1. Beskriv hvert bilde kort\n2. Skriv NØYAKTIG: "Anbefalt rekkefølge: X, X, X"\n3. Begrunnelse (visuell flyt, storytelling)\n4. Caption-ide per bilde\n\nIngen em-dash.`});
     await streamClaude(k,[{role:"user",content}],
-      chunk=>{streamRef.current+=chunk;set("res",streamRef.current);},
+      c=>{orderStreamRef.current+=c;set("orderRes",orderStreamRef.current);},
       ()=>{
-        set("load",false);
-        const m=streamRef.current.match(/[Aa]nbefalt\s+rekkef[øo]lge:\s*([0-9,\s]+)/);
+        set("orderLoad",false);
+        const m=orderStreamRef.current.match(/[Aa]nbefalt\s+rekkef[øo]lge:\s*([0-9,\s]+)/);
         if(m){ const nums=m[1].split(/[,\s]+/).map(n=>parseInt(n.trim())-1).filter(n=>!isNaN(n)&&n>=0&&n<imgs.length); if(nums.length>0) set("order",nums); }
       },
-      e=>{set("err",e);set("load",false);}
+      e=>{set("orderErr",e);set("orderLoad",false);}
     );
   };
 
   const orderedImgs=order.length>0?order.map(i=>imgs[i]).filter(Boolean):[];
 
   return <div className="page">
+    {/* ═══ INPUT PANEL ═══ */}
     <div className="input-panel">
-      <p className="page-title">Bilderrekkefølge</p>
-      <p className="page-sub">Last opp bilder, sorter manuelt eller la AI anbefale rekkefølge</p>
-      <div className={`drop${over?" over":""}`} style={{minHeight:90}}
-        onDragOver={e=>{e.preventDefault();set("over",true);}}
-        onDragLeave={()=>set("over",false)}
-        onDrop={e=>{e.preventDefault();set("over",false);loadFiles(e.dataTransfer.files);}}
-        onClick={()=>ref.current.click()}>
-        <div className="drop-txt"><strong>Dra bilder hit</strong>Hold ⌘ / Ctrl for å velge flere</div>
-        <input ref={ref} type="file" accept="image/*" multiple style={{display:"none"}} onChange={e=>loadFiles(e.target.files)}/>
+      <p className="page-title">Innhold</p>
+      <p className="page-sub"><span className="kbd">⌘↵</span> for å generere</p>
+
+      <div className="mode-toggle">
+        <button className={`mode-btn${mode==="single"?" on":""}`} onClick={()=>set("mode","single")}>Enkelt innlegg</button>
+        <button className={`mode-btn${mode==="week"?" on":""}`} style={{borderLeft:"1px solid var(--line)"}} onClick={()=>set("mode","week")}>Ukeplan</button>
+      </div>
+
+      {/* ── ENKELT INNLEGG ── */}
+      {mode==="single"&&<>
+        <label>Plattform</label>
+        <div className="chips">{PLAT.map(p=><button key={p} className={`chip${plat===p?" on":""}`} onClick={()=>set("plat",p)}>{p}</button>)}</div>
+        <PlatformGuide plat={plat}/>
+        <div className="field">
+          <label>Beskriv innlegget</label>
+          <textarea rows={3} id="main-topic" placeholder="F.eks: Vi lanserer Gudrun, puter og metertekstil i lin og ull..." value={topic} onChange={e=>set("topic",e.target.value)}/>
+          <CharCounter text={topic} plat={plat}/>
+        </div>
+        <label>Tone</label>
+        <div className="chips">{TONES.map(t=><button key={t} className={`chip${tone===t?" on":""}`} onClick={()=>set("tone",t)}>{t}</button>)}</div>
+        <div className="field">
+          <label>Tilleggsinfo (valgfritt)</label>
+          <textarea rows={2} placeholder="CTA, lenke i bio, kampanjekode..." value={extra} onChange={e=>set("extra",e.target.value)}/>
+        </div>
+        <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:16}}>
+          <button className={`chip${abMode?" on":""}`} onClick={()=>set("abMode",!abMode)}>A/B test</button>
+          <span style={{fontSize:10,color:"var(--mid)"}}>To vinklinger side om side</span>
+        </div>
+        <button id="main-gen-btn" className="btn" onClick={genCaption} disabled={load} style={{width:"100%"}}>
+          {load?"Genererer…":"Generer captions"}
+        </button>
+        {err&&<p className="err">{err}</p>}
+      </>}
+
+      {/* ── UKEPLAN ── */}
+      {mode==="week"&&<>
+        <div className="field">
+          <label>Ukens tema / leverandør</label>
+          <textarea rows={3} placeholder="F.eks: Ny leverandør Gudrun, Håndverksbiennalen, vårkollesjonen..." value={focus} onChange={e=>set("focus",e.target.value)}/>
+        </div>
+        <label>Plattform</label>
+        <div className="chips">{PLAT.map(p=><button key={p} className={`chip${plat===p?" on":""}`} onClick={()=>set("plat",p)}>{p}</button>)}</div>
+        <div className="field">
+          <label>Antall innlegg</label>
+          <input type="number" min="1" max="7" value={posts} onChange={e=>set("posts",e.target.value)}/>
+        </div>
+        <button id="main-gen-btn" className="btn" onClick={genCalendar} disabled={load} style={{width:"100%"}}>
+          {load?"Planlegger…":"Lag ukeplan med captions"}
+        </button>
+        {err&&<p className="err">{err}</p>}
+        <hr className="section-sep"/>
+        <label>Kommende hendelser</label>
+        <div className="season-list">
+          {SEASON_EVENTS.map((it,i)=><div key={i} className="season-item">
+            <span className="season-date">{it.d}</span>
+            <span className="season-evt">{it.e}</span>
+          </div>)}
+        </div>
+      </>}
+
+      {/* ── BILDERREKKEFØLGE (lenger ned i panelet) ── */}
+      <hr className="section-sep"/>
+      <label style={{marginBottom:12}}>Bilderrekkefølge</label>
+      <div className={`drop${orderOver?" over":""}`} style={{minHeight:72,padding:"20px"}}
+        onDragOver={e=>{e.preventDefault();set("orderOver",true);}}
+        onDragLeave={()=>set("orderOver",false)}
+        onDrop={e=>{e.preventDefault();set("orderOver",false);loadImgs(e.dataTransfer.files);}}
+        onClick={()=>dropRef.current.click()}>
+        <div className="drop-txt"><strong>Dra bilder hit</strong>Hold ⌘/Ctrl for å velge flere</div>
+        <input ref={dropRef} type="file" accept="image/*" multiple style={{display:"none"}} onChange={e=>loadImgs(e.target.files)}/>
       </div>
       {imgs.length>0&&<>
         <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:8}}>
-          <label style={{margin:0}}>{imgs.length} bilder — dra for å sortere</label>
-          <button className="btn-ghost" onClick={()=>setState(s=>({...s,imgs:[],res:"",order:[]}))}>Fjern alle</button>
+          <label style={{margin:0}}>{imgs.length} bilder</label>
+          <button className="btn-ghost" onClick={()=>setState(s=>({...s,imgs:[],orderRes:"",order:[]}))}>Fjern alle</button>
         </div>
-        <div style={{display:"flex",flexDirection:"column",gap:4,marginBottom:16}}>
-          {imgs.map((img,i)=><div key={i} style={{display:"flex",alignItems:"center",gap:8,background:"var(--white)",border:"1px solid var(--line)",padding:"6px 8px"}}>
-            <img src={img.url} alt="" style={{width:36,height:36,objectFit:"cover",border:"1px solid var(--line)"}}/>
-            <span style={{flex:1,fontSize:10,color:"var(--mid)",overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{i+1}. {img.name}</span>
-            <div style={{display:"flex",gap:3}}>
-              <button className="btn-ghost" style={{padding:"2px 7px"}} disabled={i===0} onClick={()=>moveImg(i,i-1)}>↑</button>
-              <button className="btn-ghost" style={{padding:"2px 7px"}} disabled={i===imgs.length-1} onClick={()=>moveImg(i,i+1)}>↓</button>
+        <div style={{display:"flex",flexDirection:"column",gap:3,marginBottom:14}}>
+          {imgs.map((img,i)=><div key={i} style={{display:"flex",alignItems:"center",gap:7,background:"var(--white)",border:"1px solid var(--line)",padding:"5px 8px"}}>
+            <img src={img.url} alt="" style={{width:30,height:30,objectFit:"cover",border:"1px solid var(--line)"}}/>
+            <span style={{flex:1,fontSize:9,color:"var(--mid)",overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{i+1}. {img.name}</span>
+            <div style={{display:"flex",gap:2}}>
+              <button className="btn-ghost" style={{padding:"1px 6px"}} disabled={i===0} onClick={()=>moveImg(i,i-1)}>↑</button>
+              <button className="btn-ghost" style={{padding:"1px 6px"}} disabled={i===imgs.length-1} onClick={()=>moveImg(i,i+1)}>↓</button>
             </div>
           </div>)}
         </div>
-      </>}
-      <label>Plattform</label>
-      <div className="chips">{PLAT.map(p=><button key={p} className={`chip${plat===p?" on":""}`} onClick={()=>set("plat",p)}>{p}</button>)}</div>
-      <div className="field"><label>Kampanjemål (valgfritt)</label>
-        <input type="text" placeholder="F.eks. ny leverandør, sesong, utstilling..." value={goal} onChange={e=>set("goal",e.target.value)}/>
-      </div>
-      <button id="main-gen-btn" className="btn" onClick={go} disabled={load||imgs.length<2} style={{width:"100%"}}>
-        {load?"Analyserer…":"Analyser og anbefal rekkefølge"}
-      </button>
-      {err&&<p className="err">{err}</p>}
-    </div>
-    <div className="output-panel">
-      {load&&<div className="loading"><div className="dot"/><div className="dot"/><div className="dot"/>Analyserer bilder</div>}
-      {orderedImgs.length>0&&<>
-        <div style={{marginBottom:10}}><label>Anbefalt rekkefølge</label></div>
-        <div className="img-grid" style={{marginBottom:24}}>
-          {orderedImgs.map((img,pos)=><div key={pos} className="img-card">
-            <img className="img-thumb" src={img.url} alt={img.name}/>
-            <div className="img-name">{img.name}</div>
-            <div className="order-badge">{pos+1}</div>
-          </div>)}
+        <label>Plattform for rekkefølge</label>
+        <div className="chips">{PLAT.map(p=><button key={p} className={`chip${orderPlat===p?" on":""}`} onClick={()=>set("orderPlat",p)}>{p}</button>)}</div>
+        <div className="field">
+          <label>Kampanjemål (valgfritt)</label>
+          <input type="text" placeholder="F.eks. ny leverandør, sesong..." value={orderGoal} onChange={e=>set("orderGoal",e.target.value)}/>
         </div>
+        <button className="btn" onClick={analyzeOrder} disabled={orderLoad||imgs.length<2} style={{width:"100%"}}>
+          {orderLoad?"Analyserer…":"Analyser rekkefølge"}
+        </button>
+        {orderErr&&<p className="err">{orderErr}</p>}
       </>}
-      {res&&<div className="result-box">
-        <div className="result-head"><span className="result-tag">Analyse og strategi</span><CopyBtn text={res} toast={showToast}/></div>
-        <div className="result-body">{res}</div>
-      </div>}
-      {!res&&!load&&<div style={{padding:"40px 0",textAlign:"center",color:"var(--mid)",fontSize:12}}>Last opp og sorter bilder, deretter analyser</div>}
     </div>
-  </div>;
-}
 
-/* ══ POST-ANALYSE TAB ══ */
-function AnalyseTab({k,state,setState,showToast}){
-  const {inputText,plat,res,load,err}=state;
-  const set=(key,val)=>setState(s=>({...s,[key]:val}));
-  const streamRef=useRef("");
-
-  const go=async()=>{
-    if(!inputText.trim()){set("err","Lim inn en caption.");return;}
-    set("err","");set("load",true);set("res","");
-    streamRef.current="";
-    const prompt=`Analyser denne Novooi-captions:\n\n"${inputText}"\n\nPlattform: ${plat}\n\nGi:\n1. SCORE: X/10 for Novooi-tone (med kort begrunnelse)\n2. HVA FUNGERER: konkrete styrker i teksten\n3. HVA BØR ENDRES: spesifikke svakheter (em-dash, AI-fraser, lengde, hashtags, tone)\n4. FORBEDRET VERSJON: skriv en bedre versjon i Novooi sin tone\n\nVær ærlig og konkret. Ingen vage komplimenter.`;
-    await streamClaude(k,[{role:"user",content:prompt}],
-      chunk=>{streamRef.current+=chunk;set("res",streamRef.current);},
-      ()=>set("load",false),
-      e=>{set("err",e);set("load",false);}
-    );
-  };
-
-  const score=res?res.match(/(\d+)\/10/)?.[1]:null;
-
-  return <div className="page">
-    <div className="input-panel">
-      <p className="page-title">Post-analyse</p>
-      <p className="page-sub">Lim inn en eksisterende caption for vurdering og forbedring</p>
-      <label>Plattform</label>
-      <div className="chips">{PLAT.map(p=><button key={p} className={`chip${plat===p?" on":""}`} onClick={()=>set("plat",p)}>{p}</button>)}</div>
-      <div className="field"><label>Caption som skal analyseres</label>
-        <textarea rows={8} placeholder="Lim inn eksisterende caption her..." value={inputText} onChange={e=>set("inputText",e.target.value)}/>
-        <CharCounter text={inputText} plat={plat}/>
-      </div>
-      <button id="main-gen-btn" className="btn" onClick={go} disabled={load} style={{width:"100%"}}>{load?"Analyserer…":"Analyser caption"}</button>
-      {err&&<p className="err">{err}</p>}
-    </div>
+    {/* ═══ OUTPUT PANEL ═══ */}
     <div className="output-panel">
-      {load&&<div className="loading"><div className="dot"/><div className="dot"/><div className="dot"/>Analyserer</div>}
-      {score&&<div className="score-row">
-        <div className="score-ring">{score}</div>
-        <div><div style={{fontSize:10,letter_spacing:"1px",textTransform:"uppercase",color:"var(--mid)",marginBottom:4}}>Novooi-score</div>
-        <div style={{fontSize:13,color:"var(--ink)"}}>av 10 poeng</div></div>
-      </div>}
-      {res&&<div className="result-box">
-        <div className="result-head"><span className="result-tag">Analyse og forslag</span><CopyBtn text={res} toast={showToast}/></div>
-        <div className={`result-body${load?" streaming":""}`}>{res}</div>
-      </div>}
-      {!res&&!load&&<div style={{padding:"40px 0",textAlign:"center",color:"var(--mid)",fontSize:12}}>Lim inn en caption og trykk analyser</div>}
+
+      {/* Caption output */}
+      {mode==="single"&&<>
+        {load&&<div className="loading"><div className="dot"/><div className="dot"/><div className="dot"/>Skriver captions</div>}
+        {res&&<>
+          {abMode?(
+            <div className="ab-grid">
+              {["A","B"].map(v=>{
+                const idx=res.indexOf("VARIANT "+v); const next=v==="A"?res.indexOf("VARIANT B"):-1;
+                const text=idx>=0?(next>0?res.slice(idx,next):res.slice(idx)).replace("VARIANT "+v+":","").trim():res;
+                return <div key={v} className="result-box">
+                  <div className="result-head"><span className="result-tag">Variant {v}</span><CopyBtn text={text} toast={showToast}/></div>
+                  <div className="result-body">{text}</div>
+                </div>;
+              })}
+            </div>
+          ):(
+            <div className="result-box">
+              <div className="result-head"><span className="result-tag">Caption-varianter</span><CopyBtn text={res} toast={showToast}/></div>
+              <div className={`result-body${load?" streaming":""}`}>{res}</div>
+            </div>
+          )}
+          <CharCounter text={res} plat={plat}/>
+          {!load&&<div className="btn-row">
+            <button className="refine-btn" onClick={()=>refine("gjør den kortere og mer konsis")}>Kortere</button>
+            <button className="refine-btn" onClick={()=>refine("gjør den mer formell og raffinert")}>Mer formell</button>
+            <button className="refine-btn" onClick={()=>refine("gjør den litt mer uformell og personlig")}>Mer uformell</button>
+            <button className="refine-btn" onClick={()=>refine("bytt ut hashtagsene med mer relevante")}>Bytt hashtags</button>
+            <button className="refine-btn" onClick={()=>refine("skriv den helt om med en ny vinkling")}>Ny vinkling</button>
+          </div>}
+          <HistoryPanel tab="caption" toast={showToast}/>
+        </>}
+        {!res&&!load&&<div className="empty-state">Fyll inn innlegg og trykk generer</div>}
+      </>}
+
+      {/* Ukeplan output */}
+      {mode==="week"&&<>
+        {load&&<div className="loading"><div className="dot"/><div className="dot"/><div className="dot"/>Lager ukeplan</div>}
+        {cal&&<>
+          <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:12}}>
+            <span style={{fontSize:10,color:"var(--mid)",letterSpacing:"1px",textTransform:"uppercase"}}>Klikk dag for caption</span>
+            <CopyBtn toast={showToast} text={cal.filter(p=>p.caption).map(p=>`${p.dag} — ${p.tema}\n${p.caption}`).join("\n\n---\n\n")} label="Kopier alle"/>
+          </div>
+          <div className="cal-grid">
+            {DAYS.map(d=><div key={d} className="cal-head">{d}</div>)}
+            {DAYS.map(d=>{const p=byDay[d]; return p
+              ?<div key={d} className={`cal-card${expandedDay===d?" exp":""}`} onClick={()=>set("expandedDay",expandedDay===d?null:d)}>
+                <div className="cal-date">{p.dato||""}</div>
+                <div className="cal-type">{p.type}</div>
+                <div style={{fontWeight:500,color:"var(--ink)",fontSize:10,marginBottom:2}}>{p.tema}</div>
+                {p.tidspunkt&&<div className="cal-time">{p.tidspunkt}</div>}
+                {expandedDay===d&&p.caption&&<div className="cal-caption">{p.caption}<div style={{marginTop:6}}><CopyBtn text={p.caption} toast={showToast}/></div></div>}
+                {expandedDay!==d&&<div style={{fontSize:8,color:"var(--gold)",marginTop:5,letterSpacing:"1px",textTransform:"uppercase"}}>Trykk for caption</div>}
+              </div>
+              :<div key={d} className="cal-empty"/>;
+            })}
+          </div>
+          <hr className="divider"/>
+          <div style={{marginBottom:12,fontSize:9,letterSpacing:"2px",textTransform:"uppercase",color:"var(--mid)"}}>Alle captions</div>
+          {cal.filter(p=>p.caption).map((p,i)=><div key={i} className="result-box" style={{marginBottom:10}}>
+            <div className="result-head"><span className="result-tag">{p.dag} — {p.tema}</span><CopyBtn text={p.caption} toast={showToast}/></div>
+            <div className="result-body">{p.caption}</div>
+          </div>)}
+        </>}
+        {!cal&&!load&&<div className="empty-state">Fyll inn tema og trykk generer</div>}
+      </>}
+
+      {/* Order output */}
+      {(orderLoad||orderRes||orderedImgs.length>0)&&<>
+        <hr className="divider"/>
+        <div style={{marginBottom:10,fontSize:9,letterSpacing:"2px",textTransform:"uppercase",color:"var(--mid)"}}>Bilderrekkefølge</div>
+        {orderLoad&&<div className="loading"><div className="dot"/><div className="dot"/><div className="dot"/>Analyserer bilder</div>}
+        {orderedImgs.length>0&&<>
+          <div style={{marginBottom:8}}><label>Anbefalt rekkefølge</label></div>
+          <div className="img-grid" style={{marginBottom:20}}>
+            {orderedImgs.map((img,pos)=><div key={pos} className="img-card">
+              <img className="img-thumb" src={img.url} alt={img.name}/>
+              <div className="img-name">{img.name}</div>
+              <div className="order-badge">{pos+1}</div>
+            </div>)}
+          </div>
+        </>}
+        {orderRes&&<div className="result-box">
+          <div className="result-head"><span className="result-tag">Analyse og strategi</span><CopyBtn text={orderRes} toast={showToast}/></div>
+          <div className="result-body">{orderRes}</div>
+        </div>}
+      </>}
     </div>
   </div>;
 }
 
-/* ══ SETTINGS PANEL ══ */
+/* ── SETTINGS PANEL ── */
 function SettingsPanel({context,setContext,brandMemory,setBrandMemory,onClose,showToast}){
   const [ctx,setCtx]=useState(context);
   const [mem,setMem]=useState(brandMemory);
   const save=()=>{
     setContext(ctx); setBrandMemory(mem);
     try{ localStorage.setItem("nv_brand_mem",mem); }catch(e){}
-    showToast("Innstillinger lagret"); onClose();
+    showToast("Lagret"); onClose();
   };
-  return <div className="settings-overlay" onClick={e=>{if(e.target.className==="settings-overlay")onClose();}}>
+  return <div className="settings-overlay" onClick={e=>{ if(e.target.className==="settings-overlay") onClose(); }}>
     <div className="settings-panel">
-      <div className="settings-title">
-        Innstillinger
-        <button className="btn-ghost" onClick={onClose}>Lukk</button>
-      </div>
-
-      <div className="settings-section">
+      <div className="settings-title">Innstillinger<button className="btn-ghost" onClick={onClose}>Lukk</button></div>
+      <div className="settings-sec">
         <h3>Kampanjekontekst denne uken</h3>
-        <p style={{fontSize:11,color:"var(--mid)",marginBottom:10,lineHeight:1.6}}>Injiseres automatisk i alle prompts. Sett til blank når uken er over.</p>
-        <textarea rows={3} placeholder="F.eks: Vi har 20% på Northern-lamper til søndag. Fokus på vårkollesjonen. Oslo Design Fair 14. mars." value={ctx} onChange={e=>setCtx(e.target.value)}/>
+        <p style={{fontSize:11,color:"var(--mid)",marginBottom:10,lineHeight:1.6}}>Injiseres automatisk i alle prompts.</p>
+        <textarea rows={3} placeholder="F.eks: 20% på Northern-lamper til søndag. Fokus på vårkollesjonen." value={ctx} onChange={e=>setCtx(e.target.value)}/>
       </div>
-
-      <div className="settings-section">
+      <div className="settings-sec">
         <h3>Merkevare-notater</h3>
-        <p style={{fontSize:11,color:"var(--mid)",marginBottom:10,lineHeight:1.6}}>Fast informasjon om Novooi som alltid er tilgjengelig. Lagres mellom øktene.</p>
-        <textarea rows={6} placeholder="F.eks: Våre mest populære merker: Northern, LK Hjelle, Fjordfiesta. Pågående samarbeidspartnere: OMGI Hytter, Munch Museet. Vår butikk i Oslo er åpen tir-tor 10-16." value={mem} onChange={e=>setMem(e.target.value)}/>
+        <p style={{fontSize:11,color:"var(--mid)",marginBottom:10,lineHeight:1.6}}>Fast info om Novooi. Lagres mellom øktene.</p>
+        <textarea rows={6} placeholder="F.eks: Våre mest populære merker: Northern, LK Hjelle, Fjordfiesta. Pågående samarbeidspartnere: OMGI Hytter." value={mem} onChange={e=>setMem(e.target.value)}/>
       </div>
-
-      <div className="settings-section">
+      <div className="settings-sec">
         <h3>Tastatursnarveier</h3>
-        <div style={{fontSize:11,lineHeight:2,color:"var(--ink)"}}>
-          <div><span className="kbd">⌘ + ↵</span> Generer på aktiv fane</div>
-          <div><span className="kbd">⌘ + K</span> Bytt fane</div>
+        <div style={{fontSize:11,lineHeight:2.2,color:"var(--ink)"}}>
+          <div><span className="kbd">⌘ + ↵</span>  Generer</div>
+          <div><span className="kbd">⌘ + K</span>  Bytt fane</div>
         </div>
       </div>
-
       <button className="btn" onClick={save} style={{width:"100%"}}>Lagre</button>
     </div>
   </div>;
 }
 
-/* ══ LOCK SCREEN ══ */
+/* ── LOCK SCREEN ── */
 function LockScreen({onUnlock}){
   const [suffix,setSuffix]=useState("");
   const [checking,setChecking]=useState(false);
   const [err,setErr]=useState("");
   const attempt=async()=>{
-    if(!suffix.trim()) return;
-    setErr("");setChecking(true);
+    if(!suffix.trim()) return; setErr(""); setChecking(true);
     try{ await validateKey(KEY_PREFIX+suffix.trim()); onUnlock(KEY_PREFIX+suffix.trim()); }
     catch(e){ setErr("Feil tilgangskode — prøv igjen."); setSuffix(""); }
     setChecking(false);
@@ -893,45 +699,36 @@ function LockScreen({onUnlock}){
         style={err?{borderBottomColor:"var(--red)"}:{}} autoFocus disabled={checking}/>
       {err&&<p style={{fontSize:11,color:"var(--red)",marginTop:-18,marginBottom:16}}>{err}</p>}
       {checking
-        ?<div className="loading" style={{justifyContent:"center",padding:"0 0 16px"}}><div className="dot"/><div className="dot"/><div className="dot"/>Verifiserer</div>
+        ?<div className="loading" style={{justifyContent:"center",padding:"0 0 14px"}}><div className="dot"/><div className="dot"/><div className="dot"/>Verifiserer</div>
         :<button className="btn" style={{width:"100%"}} onClick={attempt}>Logg inn</button>}
     </div>
   </div>;
 }
 
-/* ══ APP ══ */
-const INIT={
-  innhold: {mode:"single",topic:"",tone:"Profesjonell",plat:"Instagram",extra:"",res:"",resB:"",abMode:false,load:false,err:"",focus:"",posts:"5",cal:null,raw:"",expandedDay:null},
-  image:   {imgs:[],plat:"Instagram",tone:"Profesjonell",load:false,err:"",over:false},
-  order:   {imgs:[],plat:"Instagram",goal:"",res:"",load:false,err:"",over:false,order:[]},
-  analyse: {inputText:"",plat:"Instagram",res:"",load:false,err:""},
+/* ── APP ── */
+const INIT_MAIN = {
+  mode:"single", topic:"", tone:"Profesjonell", plat:"Instagram", extra:"", res:"", abMode:false, load:false, err:"",
+  focus:"", posts:"5", cal:null, expandedDay:null,
+  imgs:[], orderPlat:"Instagram", orderGoal:"", orderRes:"", orderLoad:false, orderErr:"", orderOver:false, order:[]
 };
 
 function App(){
-  const [tab,setTab]=useState("innhold");
   const [key,setKey]=useState("");
-  const [ts,setTs]=useState(INIT);
-  const [dark,setDark]=useState(()=>{ try{return localStorage.getItem("nv_dark")==="1";}catch(e){return false;} });
+  const [mainState,setMainState]=useState(INIT_MAIN);
+  const [dark,setDark]=useState(()=>{ try{ return localStorage.getItem("nv_dark")==="1"; }catch(e){ return false; } });
   const [context,setContext]=useState("");
-  const [brandMemory,setBrandMemory]=useState(()=>{ try{return localStorage.getItem("nv_brand_mem")||"";}catch(e){return "";} });
+  const [brandMemory,setBrandMemory]=useState(()=>{ try{ return localStorage.getItem("nv_brand_mem")||""; }catch(e){ return ""; } });
   const [showSettings,setShowSettings]=useState(false);
   const [toastState,showToast]=useToast();
 
-  const setS=id=>fn=>setTs(s=>({...s,[id]:fn(s[id])}));
-  const TABS=[["innhold","Innhold"],["image","Bildeanalyse"],["order","Bilderrekkefølge"],["analyse","Post-analyse"]];
+  useEffect(()=>{ document.body.classList.toggle("dark",dark); try{ localStorage.setItem("nv_dark",dark?"1":"0"); }catch(e){} },[dark]);
 
   useEffect(()=>{
-    document.body.classList.toggle("dark",dark);
-    try{localStorage.setItem("nv_dark",dark?"1":"0");}catch(e){}
-  },[dark]);
-
-  useEffect(()=>{
-    const handler=e=>{
-      if((e.metaKey||e.ctrlKey)&&e.key==="Enter"){e.preventDefault();document.getElementById("main-gen-btn")?.click();}
-      if((e.metaKey||e.ctrlKey)&&e.key==="k"){e.preventDefault();setTab(t=>{const idx=TABS.findIndex(x=>x[0]===t);return TABS[(idx+1)%TABS.length][0];});}
+    const h=e=>{
+      if((e.metaKey||e.ctrlKey)&&e.key==="Enter"){ e.preventDefault(); document.getElementById("main-gen-btn")?.click(); }
     };
-    document.addEventListener("keydown",handler);
-    return()=>document.removeEventListener("keydown",handler);
+    document.addEventListener("keydown",h);
+    return()=>document.removeEventListener("keydown",h);
   },[]);
 
   if(!key) return <LockScreen onUnlock={setKey}/>;
@@ -941,24 +738,16 @@ function App(){
       <div className="logo">markeds<em>agent</em></div>
       <div className="hdr-right">
         {context&&<span className="ctx-badge">✦ Kampanje aktiv</span>}
-        <button className="icon-btn" title="Innstillinger og merkevare-notater" onClick={()=>setShowSettings(true)}>⚙</button>
+        <button className="icon-btn" title="Innstillinger" onClick={()=>setShowSettings(true)}>⚙</button>
         <button className="icon-btn" title={dark?"Lyst modus":"Mørkt modus"} onClick={()=>setDark(d=>!d)}>{dark?"☀":"☾"}</button>
         <button className="btn-ghost" onClick={()=>setKey("")}>Logg ut</button>
       </div>
-    </div>
-    <div className="nav">
-      {TABS.map(([id,label])=><button key={id} className={`tab${tab===id?" active":""}`} onClick={()=>setTab(id)}>{label}</button>)}
     </div>
     {context&&<div className="ctx-banner">
       <strong>Denne uken:</strong> {context}
       <button onClick={()=>setContext("")}>Fjern</button>
     </div>}
-
-    {tab==="innhold"  &&<InnholdTab  k={key} state={ts.innhold} setState={setS("innhold")} context={context} brandMemory={brandMemory} showToast={showToast}/>}
-    {tab==="image"    &&<ImageTab    k={key} state={ts.image}   setState={setS("image")}   showToast={showToast}/>}
-    {tab==="order"    &&<OrderTab    k={key} state={ts.order}   setState={setS("order")}   showToast={showToast}/>}
-    {tab==="analyse"  &&<AnalyseTab  k={key} state={ts.analyse} setState={setS("analyse")} showToast={showToast}/>}
-
+    <MainTab k={key} state={mainState} setState={setMainState} context={context} brandMemory={brandMemory} showToast={showToast}/>
     {showSettings&&<SettingsPanel context={context} setContext={setContext} brandMemory={brandMemory} setBrandMemory={setBrandMemory} onClose={()=>setShowSettings(false)} showToast={showToast}/>}
     <Toast msg={toastState.msg} show={toastState.show}/>
   </>;
